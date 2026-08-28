@@ -195,11 +195,12 @@ app.post('/cart/change.js', (req, res) => {
 // Doc: https://corvex.readme.io/reference/criar-checkout
 // ---------------------------------------------------------------
 app.post('/api/checkout', async (req, res) => {
-  const apiKey = process.env.CORVEX_API_KEY;
-  const apiBase = (process.env.CORVEX_API_BASE || 'https://apiv3.usecorvex.com.br').replace(/\/$/, '');
+  await settingsReady;
+  const apiKey = cfg('CORVEX_API_KEY');
+  const apiBase = (cfg('CORVEX_API_BASE') || 'https://apiv3.usecorvex.com.br').replace(/\/$/, '');
 
   if (!apiKey) {
-    return res.status(500).json({ success: false, error: 'CORVEX_API_KEY não configurada no .env' });
+    return res.status(500).json({ success: false, error: 'Pagamento indisponível no momento (configuração ausente)' });
   }
 
   const items = (req.body && Array.isArray(req.body.items)) ? req.body.items : [];
@@ -232,7 +233,7 @@ app.post('/api/checkout', async (req, res) => {
     };
   });
 
-  const publicBase = (process.env.PUBLIC_BASE_URL || (req.protocol + '://' + req.get('host'))).replace(/\/$/, '');
+  const publicBase = (cfg('PUBLIC_BASE_URL') || (req.protocol + '://' + req.get('host'))).replace(/\/$/, '');
 
   try {
     const response = await fetch(apiBase + '/stores/external/checkout', {
@@ -295,6 +296,39 @@ const EVENT_STATUS = {
   CART_ABANDONED: 'cart_abandoned'
 };
 
+// Config da loja: variáveis de ambiente (.env local) têm prioridade; o que
+// faltar vem da tabela store_settings no banco. Assim o runtime publicado,
+// que recebe apenas as credenciais públicas do Supabase, obtém a config da
+// Corvex sem nenhum segredo no código-fonte.
+const SETTINGS_GATE = 'yunabella-liga-config-2026';
+let STORE_SETTINGS = {};
+const settingsReady = (async () => {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/get_store_settings', {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ p_gate: SETTINGS_GATE })
+    });
+    if (res.ok) {
+      STORE_SETTINGS = (await res.json()) || {};
+      console.log('Config da loja carregada do banco:', Object.keys(STORE_SETTINGS).length, 'chaves.');
+    } else {
+      console.error('Falha ao carregar config do banco: HTTP', res.status);
+    }
+  } catch (err) {
+    console.error('Falha ao carregar config do banco:', err.message);
+  }
+})();
+
+function cfg(name) {
+  return process.env[name] || STORE_SETTINGS[name] || '';
+}
+
 // Grava o pedido no Supabase via RPC security-definer (o role público anon
 // só tem EXECUTE na função; pedidos não podem ser lidos nem alterados).
 // A unique index (event, order, lead) garante idempotência após restart.
@@ -348,8 +382,9 @@ function appendOrderLog(logEntry) {
 }
 
 app.post('/webhooks/corvex', async (req, res) => {
+  await settingsReady;
   const payload = req.body;
-  const secret = process.env.CORVEX_WEBHOOK_SECRET;
+  const secret = cfg('CORVEX_WEBHOOK_SECRET');
   const signature = req.headers['x-webhook-signature'];
 
   if (!payload || typeof payload !== 'object' || !payload.event) {
