@@ -1,0 +1,46 @@
+<%- include('../partials/head') %>
+<%- include('../partials/pre-header') %>
+<%- include('../partials/header') %>
+
+<main id="main" role="main">
+  <div class="container">
+    <div id="thank-you" class="empty-state" style="padding: 60px 20px; text-align: center;">
+      <div class="empty-state__icon" style="margin-bottom: 24px;">
+        <svg focusable="false" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: #2e7d32;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M8 12.5l2.5 2.5L16 9.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <h1 class="empty-state__heading heading h1" style="margin-bottom: 16px;">Obrigado pela sua compra!</h1>
+
+      <p style="font-size: 18px; margin-bottom: 8px;">Seu pedido foi recebido com sucesso.</p>
+      <p style="font-size: 16px; color: #666; max-width: 520px; margin: 0 auto 32px;">
+        Você receberá todas as informações do seu pedido, incluindo confirmação de pagamento
+        e dados de entrega, pelo seu <strong>WhatsApp</strong> ou <strong>e-mail</strong>.
+      </p>
+
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="button button--primary button--large">Continuar comprando</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Pedido concluído: esvaziar o carrinho local (mesma fonte de verdade)
+  (function () {
+    function clearCart() {
+      if (window.YBCart && typeof YBCart.clear === 'function') {
+        YBCart.clear();
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', clearCart);
+    } else {
+      clearCart();
+    }
+  })();
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,206 @@
+<%- include('../partials/head') %>
+<%- include('../partials/pre-header') %>
+<%- include('../partials/header') %>
+
+<main id="main" role="main">
+  <div class="container">
+    <header class="page__header page__header--stack">
+      <h1 class="page__title heading h1">Seu Carrinho</h1>
+    </header>
+  </div>
+
+  <div id="cart-app" class="container">
+    <div class="empty-state">
+      <div class="empty-state__icon">svg</div>
+      <p class="empty-state__heading heading h1">Carregando carrinho...</p>
+    </div>
+  </div>
+
+  <div class="cart-wrapper" id="cart-wrapper" style="display:none">
+    <div class="cart-wrapper__inner">
+      <div class="cart-wrapper__inner-inner">
+        <div class="container container--flush">
+          <div class="card">
+            <div class="table-wrapper">
+              <table class="line-item-table table table--loose">
+                <thead class="hidden-phone">
+                  <tr>
+                    <th>Produto</th>
+                    <th class="table__cell--center">Quantidade</th>
+                    <th class="table__cell--right">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-items"><!-- itens via JS --></tbody>
+              </table>
+            </div>
+          </div>
+
+          <form class="cart-recap" id="cart-recap" novalidate="novalidate">
+            <div class="cart-recap__scroller">
+              <div class="card">
+                <div class="card__section">
+                  <div class="cart-recap__price-line text--pull">
+                    <span class="cart-recap__price-line-label">Total</span>
+                    <span class="cart-recap__price-line-price"><strong id="cart-total">R$ 0,00</strong></span>
+                  </div>
+                  <div class="cart-recap__price-line-payments">
+                    <span style="margin-bottom: 5px;">ou em até <strong>12x</strong> de <strong id="cart-installment">R$ 0,00</strong> sem juros</span>
+                  </div>
+                  <a class="button button--full button--large" style="margin-bottom: 10px; color: var(--primary-button-background); border: 1px solid var(--primary-button-background);" href="/">Continuar comprando</a>
+                  <button type="button" id="cart-checkout" class="cart-recap__checkout button button--primary button--full button--large">Finalizar Compra</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  // /cart usa a MESMA fonte de verdade do restante do site: window.YBCart (localStorage 'yunabella_cart')
+  function fmt(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ','); }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function render() {
+    var cart = window.YBCart ? YBCart.getCart() : { items: [] };
+    var tbody = document.getElementById('cart-items');
+    var app = document.getElementById('cart-app');
+    var wrapper = document.getElementById('cart-wrapper');
+    var items = cart.items || [];
+
+    if (!items.length) {
+      wrapper.style.display = 'none';
+      app.style.display = '';
+      app.innerHTML =
+        '<div class="empty-state">' +
+        '  <div class="empty-state__icon"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#000" class="bi bi-bag-x" viewBox="0 0 16 16"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/></svg></div>' +
+        '  <p class="empty-state__heading heading h1">Seu carrinho está vazio</p>' +
+        '  <div class="empty-state__button-container"><a href="/collections/all" class="empty-state__button button button--primary">Começar a comprar</a></div>' +
+        '</div>';
+      return;
+    }
+
+    app.style.display = 'none';
+    wrapper.style.display = '';
+
+    tbody.innerHTML = items.map(function (it, i) {
+      var v = it.variant || {};
+      var price = Number(v.price) || 0;
+      var img = v.image || '';
+      var line = it.product && it.product.title || v.title || 'Produto';
+      var total = price * (it.quantity || 1);
+      return (
+        '<tr class="line-item line-item--stack" data-id="' + esc(v.id) + '">' +
+        '  <td class="line-item__product-info">' +
+        '    <div class="line-item__product-info-wrapper">' +
+        '      <div class="line-item__image-wrapper">' +
+        (img ? '<div class="aspect-ratio aspect-ratio--square" style="padding-bottom:100%"><img src="' + esc(img) + '" alt="' + esc(line) + '"></div>' : '') +
+        '      </div>' +
+        '      <div class="line-item__meta">' +
+        '        <a href="/products/' + esc(it.product && it.product.handle || '') + '" class="line-item__title link text--strong">' + esc(line) + '</a>' +
+        (v.title && v.title !== 'Default Title' ? '<p class="line-item__property">' + esc(v.title) + '</p>' : '') +
+        '        <div class="line-item__price-list"><span class="line-item__price line-item__price--highlight">' + fmt(price) + '</span></div>' +
+        '      </div>' +
+        '    </div>' +
+        '  </td>' +
+        '  <td class="line-item__quantity table__cell--center">' +
+        '    <div class="quantity-selector">' +
+        '      <button type="button" class="quantity-selector__button cart-qty-btn" data-id="' + esc(v.id) + '" data-delta="-1" aria-label="Diminuir"><svg focusable="false" class="icon icon--minus" viewBox="0 0 10 2" role="presentation"><path d="M10 0v2H0V0z" fill="currentColor"></path></svg></button>' +
+        '      <input aria-label="Quantidade" class="quantity-selector__value cart-qty-input" data-id="' + esc(v.id) + '" inputmode="numeric" value="' + (it.quantity || 1) + '" size="2">' +
+        '      <button type="button" class="quantity-selector__button cart-qty-btn" data-id="' + esc(v.id) + '" data-delta="1" aria-label="Aumentar"><svg focusable="false" class="icon icon--plus" viewBox="0 0 10 10" role="presentation"><path d="M6 4h4v2H6v4H4V6H0V4h4V0h2v4z" fill="currentColor"></path></svg></button>' +
+        '    </div>' +
+        '    <a href="#" class="line-item__quantity-remove link cart-remove" data-id="' + esc(v.id) + '">Remover</a>' +
+        '  </td>' +
+        '  <td class="line-item__line-price table__cell--right"><span>' + fmt(total) + '</span></td>' +
+        '</tr>'
+      );
+    }).join('');
+
+    var subtotal = items.reduce(function (a, it) { return a + (Number(it.variant && it.variant.price) || 0) * (it.quantity || 1); }, 0);
+    document.getElementById('cart-total').textContent = fmt(subtotal);
+    document.getElementById('cart-installment').textContent = fmt(subtotal / 12);
+  }
+
+  function init() {
+    render();
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.cart-qty-btn');
+      if (btn) {
+        var id = btn.dataset.id;
+        var cart = YBCart.getCart();
+        var item = (cart.items || []).find(function (i) { return String(i.variant && i.variant.id) === String(id); });
+        if (item) {
+          YBCart.updateQuantity(id, item.quantity + parseInt(btn.dataset.delta, 10));
+          render();
+        }
+        return;
+      }
+      var rm = e.target.closest('.cart-remove');
+      if (rm) {
+        e.preventDefault();
+        YBCart.remove(rm.dataset.id);
+        render();
+      }
+    });
+
+    document.addEventListener('change', function (e) {
+      if (!e.target.classList.contains('cart-qty-input')) return;
+      var id = e.target.dataset.id;
+      var qty = parseInt(e.target.value, 10) || 1;
+      YBCart.updateQuantity(id, qty > 0 ? qty : 1);
+      render();
+    });
+
+    // Finalizar compra: cria checkout na Corvex e redireciona para o pagamento
+    document.getElementById('cart-checkout').addEventListener('click', async function () {
+      var btn = this;
+      var cart = YBCart.getCart();
+      var items = cart.items || [];
+      if (!items.length) {
+        alert('Seu carrinho está vazio.');
+        return;
+      }
+
+      btn.disabled = true;
+      var originalText = btn.textContent;
+      btn.textContent = 'Processando...';
+
+      try {
+        var resp = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: items })
+        });
+        var data = await resp.json().catch(function () { return null; });
+
+        if (!resp.ok || !data || !data.success || !data.checkoutUrl) {
+          throw new Error((data && data.error) || 'Não foi possível iniciar o pagamento.');
+        }
+
+        window.location.href = data.checkoutUrl;
+      } catch (err) {
+        alert('Erro ao finalizar a compra: ' + err.message + '\n\nTente novamente em instantes.');
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
+  }
+
+  // O YBCart já é carregado via head (fonte única). Re-renderiza a cada mudança global.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  window.addEventListener('cart-updated', function () { render(); });
+})();
+</script>
+
+<%- include('../partials/footer') %>

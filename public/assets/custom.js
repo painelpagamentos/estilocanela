@@ -32,10 +32,6 @@ window.onload = function() {
     }
 }
 
-$(".block-swatch__radio, .variant-swatch__radio, .product-form__single-selector").change(function () {
-  setTimeout(function () { parcelamento(); }, 150);
-});
-
 function increaseValue() {
   var value = parseInt(document.getElementById('number').value, 10);
   value = isNaN(value) ? 0 : value;

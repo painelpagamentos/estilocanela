@@ -2718,3 +2718,25 @@ iframe {
     align-items: center;
     display: flex;
 }
+
+/* Galeria da pagina de produto (clone estatico) */
+.yb-gallery__main { width: 100%; background: #f7f7f7; text-align: center; }
+.yb-gallery__main img { width: 100%; height: auto; display: block; object-fit: cover; }
+.yb-gallery__thumbs { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.yb-gallery__thumb { border: 2px solid transparent; padding: 0; background: none; cursor: pointer; width: 72px; height: 96px; overflow: hidden; border-radius: 4px; }
+.yb-gallery__thumb.is-active { border-color: #000; }
+.yb-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-pix-info { margin-top: 10px; color: #2e7d32; }
+
+
+/* Hover dos cards: garante que a 2a imagem apareca e nunca fique branca */
+@media (hover: hover) {
+  .product-item__image-wrapper--with-secondary:hover .product-item__primary-image {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  .product-item__image-wrapper--with-secondary:hover .product-item__secondary-image {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}

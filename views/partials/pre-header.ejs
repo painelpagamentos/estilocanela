@@ -1,0 +1,67 @@
+
+
+  <body class="Evolution--v2.2 features--animate-zoom template-index " data-instant-intensity="viewport">
+
+    <a href="#main" class="visually-hidden skip-to-content">Pular </a>
+    <span class="loading-bar" style="width: 0px;"></span>
+
+    <div id="shopify-section-announcement-bar" class="shopify-section"></div>
+
+    <div id="shopify-section-ad-banner" class="shopify-section"><section data-section-id="ad-banner" data-section-type="top-banner" data-section-settings=""></section>
+
+  
+    <script>
+        $(document).ready(function () {
+            if ($.fn.simplyScroll) { $("#ad-banner").simplyScroll(); } /* guarda: simplyScroll nao existe em nenhum asset do tema; sem isso o TypeError abortava o resto deste callback */
+
+            $(".banner").on("touchstart", function () {
+                this.click();
+            });
+
+            
+                $(".simply-scroll-clip").on("click touchstart", function() {
+                    window.location.href = '/collections/all';
+                });
+            
+        });
+    </script>
+  
+
+  <style>
+    
+    #ad-banner {
+      cursor: pointer;
+    }
+    
+
+    #ad-banner {
+      background-color: #80007f;
+    }
+
+    #ad-banner .banner {
+      background-color: #80007f;
+      content: url(//yunabella.myshopify.com/cdn/shopifycloud/storefront/assets/no-image-2048-a2addb12_750x83.gif);
+    }
+
+    @media screen and (min-width: 701px) {
+      #ad-banner .banner {
+        content: url(//yunabella.myshopify.com/cdn/shopifycloud/storefront/assets/no-image-2048-a2addb12_1920x50.gif);
+      }
+    }
+
+    .simply-scroll-container {
+      position: relative;
+    }
+
+    .simply-scroll-clip {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .simply-scroll-list {
+      width: auto !important;
+    }
+  </style></div>
+<div id="shopify-section-popups" class="shopify-section"><div data-section-id="popups" data-section-type="popups"></div>
+
+</div>

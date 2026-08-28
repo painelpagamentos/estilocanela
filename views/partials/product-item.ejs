@@ -1,0 +1,24 @@
+<% if (typeof money !== 'function') { var money = function(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ','); }; } %>
+<% var img = product.images && product.images.length ? product.images : []; %>
+<% var disc = (product.compareAtPrice && product.compareAtPrice > product.price) ? Math.round((1 - product.price / product.compareAtPrice) * 100) : 0; %>
+<div class="product-item product-item--vertical <%= grid_classes %>">
+  <% if (disc) { %><div class="product-item__label-list"><span class="product-label product-label--on-sale"><%= disc %>% OFF</span></div><% } %>
+  <a href="/products/<%= product.handle %>" class="product-item__image-wrapper<% if (img.length > 1) { %> product-item__image-wrapper--with-secondary<% } %>">
+    <div class="aspect-ratio aspect-ratio--tall" style="padding-bottom: 133.33333333333334%">
+      <% if (img.length) { %>
+      <img class="product-item__primary-image" src="<%= img[0].src %>" alt="<%= product.title %>">
+      <% if (img[1]) { %><img class="product-item__secondary-image" src="<%= img[1].src %>" alt="<%= product.title %>"><% } %>
+      <% } %>
+    </div>
+  </a>
+  <div class="product-item__info">
+    <div class="product-item__info-inner">
+      <a href="/products/<%= product.handle %>" class="product-item__title text--strong link" style="color: #000;"><%= product.title %></a>
+      <div class="product-item__price-list price-list">
+        <span class="price price--highlight"><span class="visually-hidden">Preço por</span><%= money(product.price) %></span>
+        <% if (disc) { %><span class="price price--compare"><span class="visually-hidden">Preço </span><%= money(product.compareAtPrice) %></span><% } %>
+        <p class="parcelamento" style="font-size:13px; margin-top: 0; margin-bottom: 10px">em 12x de <span style="color: black;"><b style="font-size:13px;"><%= money(product.price / 12) %></b></span></p>
+      </div>
+    </div>
+  </div>
+</div>

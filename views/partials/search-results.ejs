@@ -1,0 +1,31 @@
+<% var money = function(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ','); }; %>
+<% if (results.length > 0) { %>
+  <p class="search-bar__result-category">Produtos</p>
+  <div class="search-bar__result-products">
+    <% results.forEach(function(p) { %>
+      <% var img = p.images && p.images.length ? p.images[0].src : ''; %>
+      <a href="/products/<%= p.handle %>" class="search-bar__result-item">
+        <div class="search-bar__image-container">
+          <div class="aspect-ratio aspect-ratio--square" style="padding-bottom: 100%">
+            <% if (img) { %><img src="<%= img %>" alt="<%= p.title %>"><% } %>
+          </div>
+        </div>
+        <div class="search-bar__item-info">
+          <p class="search-bar__item-title"><%= p.title %></p>
+          <span class="search-bar__item-price"><%= money(p.price) %></span>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+  <% if (total > 4) { %>
+    <button class="search-bar__view-all" type="submit">Ver todos os resultados
+      <svg focusable="false" class="icon icon--arrow-right" viewBox="0 0 8 12" role="presentation">
+        <path stroke="currentColor" stroke-width="2" d="M2 2l4 4-4 4" fill="none" stroke-linecap="square"></path>
+      </svg>
+    </button>
+  <% } %>
+<% } else { %>
+  <div class="search-bar__empty-state">
+    <p class="heading h4">Nenhum resultado encontrado</p>
+  </div>
+<% } %>
