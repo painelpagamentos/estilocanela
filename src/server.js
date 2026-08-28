@@ -7,7 +7,7 @@ const crypto = require('crypto');
 const envPath = path.join(__dirname, '../.env');
 if (fs.existsSync(envPath)) {
   fs.readFileSync(envPath, 'utf8').split(/\r?\n/).forEach(line => {
-    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/);
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
   });
 }
@@ -285,7 +285,69 @@ app.get('/obrigado', (req, res) => {
 const processedWebhookEvents = new Set(); // idempotência (event + id)
 const ordersLogPath = path.join(__dirname, '../data/orders-log.json');
 
-app.post('/webhooks/corvex', (req, res) => {
+const SUPABASE_URL = process.env.SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
+const EVENT_STATUS = {
+  ORDER_CREATED: 'created',
+  ORDER_PAID: 'paid',
+  ORDER_CANCELLED: 'cancelled',
+  ORDER_REFUNDED: 'refunded',
+  CART_ABANDONED: 'cart_abandoned'
+};
+
+// Grava o pedido no Supabase via RPC security-definer (o role público anon
+// só tem EXECUTE na função; pedidos não podem ser lidos nem alterados).
+// A unique index (event, order, lead) garante idempotência após restart.
+// Retorna 'inserted' | 'duplicate' | null (banco não configurado)
+async function saveOrderToDatabase(entry, rawPayload) {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return null;
+  const p_order = {
+    corvex_order_id: String(entry.id || 'sem-id'),
+    lead_id: rawPayload.leadId || null,
+    event: entry.event,
+    status: entry.status || EVENT_STATUS[entry.event] || 'unknown',
+    customer_name: entry.client.name,
+    customer_email: entry.client.email,
+    customer_phone: entry.client.phone,
+    total_cents: Number.isFinite(Number(entry.amount)) ? Math.round(Number(entry.amount)) : 0,
+    currency: 'BRL',
+    payload: rawPayload
+  };
+  const p_items = entry.items.map(it => ({
+    product_id: it.externalRef ? String(it.externalRef) : null,
+    title: String(it.name || 'Item'),
+    quantity: Number(it.quantity) || 1,
+    unit_price_cents: Number.isFinite(Number(it.price)) ? Math.round(Number(it.price)) : 0
+  }));
+  const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/insert_order_webhook', {
+    method: 'POST',
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ p_order, p_items })
+  });
+  if (!res.ok) throw new Error('Supabase rpc HTTP ' + res.status + ': ' + (await res.text()).slice(0, 200));
+  const newId = await res.json(); // uuid do pedido ou null (duplicata)
+  return newId ? 'inserted' : 'duplicate';
+}
+
+// Fallback local (dev sem banco configurado ou falha de rede)
+function appendOrderLog(logEntry) {
+  try {
+    let log = [];
+    if (fs.existsSync(ordersLogPath)) {
+      log = JSON.parse(fs.readFileSync(ordersLogPath, 'utf8') || '[]');
+    }
+    log.push(logEntry);
+    fs.writeFileSync(ordersLogPath, JSON.stringify(log, null, 2));
+  } catch (err) {
+    console.error('Falha ao gravar orders-log.json:', err.message);
+  }
+}
+
+app.post('/webhooks/corvex', async (req, res) => {
   const payload = req.body;
   const secret = process.env.CORVEX_WEBHOOK_SECRET;
   const signature = req.headers['x-webhook-signature'];
@@ -339,16 +401,16 @@ app.post('/webhooks/corvex', (req, res) => {
   console.log('Webhook Corvex:', payload.event, '| id:', payload.id, '| status:', payload.status,
     '| valor:', payload.amount, '| cliente:', client.name, client.phone || client.email);
 
-  // Persistir em data/orders-log.json (append tolerante a falhas)
+  // Persistir: Supabase (banco) com fallback para orders-log.json
   try {
-    let log = [];
-    if (fs.existsSync(ordersLogPath)) {
-      log = JSON.parse(fs.readFileSync(ordersLogPath, 'utf8') || '[]');
+    const dbResult = await saveOrderToDatabase(logEntry, payload);
+    if (dbResult === 'duplicate') {
+      return res.json({ received: true, duplicate: true });
     }
-    log.push(logEntry);
-    fs.writeFileSync(ordersLogPath, JSON.stringify(log, null, 2));
+    if (!dbResult) appendOrderLog(logEntry);
   } catch (err) {
-    console.error('Falha ao gravar orders-log.json:', err.message);
+    console.error('Falha ao gravar pedido no banco, usando orders-log.json:', err.message);
+    appendOrderLog(logEntry);
   }
 
   // Ponto de extensão: aqui entrarão ações por evento
