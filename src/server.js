@@ -20,6 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
 
+// Carregar políticas da loja
+const policies = require('./policies');
+
 // Carregar dados na inicialização (em memória)
 const productsPath = path.join(__dirname, '../data/products.json');
 const collectionsPath = path.join(__dirname, '../data/collections.json');
@@ -304,6 +307,22 @@ app.post('/api/checkout', async (req, res) => {
 // ---------------------------------------------------------------
 app.get('/obrigado', (req, res) => {
   res.render('pages/thank-you');
+});
+
+// ---------------------------------------------------------------
+// Páginas institucionais (políticas e contato)
+// ---------------------------------------------------------------
+app.get('/pages/:handle', (req, res) => {
+  const handle = req.params.handle;
+  const policy = Object.values(policies).find(p => path.basename(p.file, '.html') === handle);
+  if (policy) {
+    const content = fs.readFileSync(policy.file, 'utf8');
+    return res.render('pages/policy', { title: policy.title, content, product: null });
+  }
+  if (handle === 'contact') {
+    return res.render('pages/contact', { product: null });
+  }
+  return res.status(404).send('Página não encontrada');
 });
 
 // ---------------------------------------------------------------

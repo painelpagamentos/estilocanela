@@ -1,0 +1,17 @@
+<%- include('../partials/head') %>
+<%- include('../partials/pre-header') %>
+<%- include('../partials/header') %>
+
+<main id="main" role="main">
+  <div class="container">
+    <div class="page-policy" style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+      <h1 style="font-size: 28px; margin-bottom: 24px;"><%= title %></h1>
+      <p style="color: #666; font-size: 14px; margin-bottom: 24px;">Última atualização: <%= new Date().toLocaleDateString('pt-BR') %></p>
+      <div class="policy-content" style="line-height: 1.7; color: #333;">
+        <%- content %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
