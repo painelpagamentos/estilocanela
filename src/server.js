@@ -50,7 +50,7 @@ app.locals.money = (v) => {
 // Rotas
 app.get('/', (req, res) => {
   // Seções da home (featured-collection) alimentadas pelas coleções
-  const homeOrder = ['conjuntos', 'vestidos', 'calcas', 'blusas', 'macacoes'];
+  const homeOrder = ['festival-de-vestidos-preco-maximo-99-99', 'conjuntos', 'vestidos', 'calcas', 'blusas', 'macacoes'];
   const homeSections = homeOrder.map(handle => {
     const col = collections.find(c => c.handle === handle);
     const secProducts = col ? col.products.map(h => productsByHandle[h]).filter(Boolean) : [];
