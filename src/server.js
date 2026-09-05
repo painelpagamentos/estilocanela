@@ -28,8 +28,36 @@ let products = [];
 let productsByHandle = {};
 let collections = [];
 
+function normalizeProductImageUrl(value) {
+  if (typeof value !== 'string' || !value.includes('cdn.dooca.store/')) return value;
+  const queryIndex = value.indexOf('?');
+  const pathPart = queryIndex >= 0 ? value.slice(0, queryIndex) : value;
+  const queryPart = queryIndex >= 0 ? value.slice(queryIndex) : '';
+  if (/\.(?:jpe?g|png|webp|gif)$/i.test(pathPart)) return value;
+  return pathPart + '.jpeg' + queryPart;
+}
+
+function normalizeProductImages(product) {
+  if (Array.isArray(product.images)) {
+    product.images.forEach(image => {
+      if (image && typeof image === 'object') {
+        image.src = normalizeProductImageUrl(image.src);
+      }
+    });
+  }
+  if (Array.isArray(product.variants)) {
+    product.variants.forEach(variant => {
+      if (variant && typeof variant === 'object') {
+        variant.image = normalizeProductImageUrl(variant.image);
+      }
+    });
+  }
+  return product;
+}
+
 if (fs.existsSync(productsPath)) {
   products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
+  products = products.map(normalizeProductImages);
   products.forEach(p => {
     productsByHandle[p.handle] = p;
   });
@@ -50,7 +78,7 @@ app.locals.money = (v) => {
 // Rotas
 app.get('/', (req, res) => {
   // Seções da home (featured-collection) alimentadas pelas coleções
-  const homeOrder = ['festival-de-vestidos-preco-maximo-99-99', 'conjuntos', 'vestidos', 'calcas', 'blusas', 'macacoes'];
+  const homeOrder = ['festival-de-conjunto-r8999', 'festival-de-vestidos-preco-maximo-99-99', 'conjuntos', 'vestidos', 'calcas', 'blusas', 'macacoes'];
   const homeSections = homeOrder.map(handle => {
     const col = collections.find(c => c.handle === handle);
     const secProducts = col ? col.products.map(h => productsByHandle[h]).filter(Boolean) : [];
