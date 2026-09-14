@@ -106935,21 +106935,19 @@
         "name": "Tamanho",
         "values": [
           "P",
-          "M",
-          "G"
+          "M"
         ]
       },
       {
         "name": "Cor",
         "values": [
-          "Preto",
-          "Marrom"
+          "Preto"
         ]
       }
     ],
     "variants": [
       {
-        "id": "1033932476",
+        "id": "3848538869",
         "title": "P / Preto",
         "option1": "P",
         "option2": "Preto",
@@ -106962,7 +106960,7 @@
         "image": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971"
       },
       {
-        "id": "1037523791",
+        "id": "3994106205",
         "title": "M / Preto",
         "option1": "M",
         "option2": "Preto",
@@ -106973,45 +106971,6 @@
         "inventoryQuantity": 999,
         "inventoryPolicy": "continue",
         "image": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971"
-      },
-      {
-        "id": "9212995719",
-        "title": "P / Marrom",
-        "option1": "P",
-        "option2": "Marrom",
-        "option3": null,
-        "sku": "",
-        "price": 69.99,
-        "compareAtPrice": 119.99,
-        "inventoryQuantity": 999,
-        "inventoryPolicy": "continue",
-        "image": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007"
-      },
-      {
-        "id": "6716683350",
-        "title": "M / Marrom",
-        "option1": "M",
-        "option2": "Marrom",
-        "option3": null,
-        "sku": "",
-        "price": 69.99,
-        "compareAtPrice": 119.99,
-        "inventoryQuantity": 999,
-        "inventoryPolicy": "continue",
-        "image": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007"
-      },
-      {
-        "id": "2162458844",
-        "title": "G / Marrom",
-        "option1": "G",
-        "option2": "Marrom",
-        "option3": null,
-        "sku": "",
-        "price": 69.99,
-        "compareAtPrice": 119.99,
-        "inventoryQuantity": 999,
-        "inventoryPolicy": "continue",
-        "image": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007"
       }
     ],
     "images": [
@@ -107024,10 +106983,111 @@
         "src": "https://cdn.dooca.store/146020/products/b45c4446-71e3-45a8-90ef-63ebdbf5906e-uoewm.jpeg?v=1785426971",
         "position": 2,
         "alt": "Batinha Bordada Amarração Preto"
+      }
+    ],
+    "collections": [
+      "blusas"
+    ],
+    "price": 69.99,
+    "compareAtPrice": 119.99
+  },
+  {
+    "id": "5293669602",
+    "handle": "batinha-bordada-amarracao-marrom",
+    "title": "Batinha Bordada Amarração Marrom",
+    "description": "<p><b>Tecido</b>: Cetim</p>\n<p><b>Tamanhos</b>: P vestindo 36/38 - M vestindo 38/40 - G vestindo 40/42</p>\n<p><b>Medidas</b>:</p>\n<p>P - Comprimento: 58cm / Busto: 62cm / Cintura: 60cm</p>\n<p>M - Comprimento: 58cm / Busto: 64cm / Cintura: 62cm</p>\n<p>G - Comprimento: 58cm / Busto: 66cm / Cintura: 64cm</p>\n<p>________________________________________________________________________________________</p>\n<p>Delicada e cheia de personalidade, a <strong>Batinha Bordada com Amarração Frontal</strong> é a escolha perfeita para compor produções modernas e sofisticadas. Confeccionada em tecido leve, o modelo conta com bordados em relevo que valorizam a peça, decote profundo em V e fechamento por amarração frontal, garantindo um caimento elegante e ajustável ao corpo.</p>\n<p>Versátil, combina perfeitamente com calças jeans, pantalonas, saias ou shorts, criando looks que vão do casual chic ao noturno com muito estilo.</p>\n<p><b>Destaques da peça:</b></p>\n<ul>\n<li>Bordados em relevo com acabamento sofisticado</li>\n<li>Decote V profundo</li>\n<li>Fechamento por amarração frontal</li>\n<li>Fechamento por amarração nas costas</li>\n<li>Modelagem confortável e moderna</li>\n<li>Tecido leve e agradável ao vestir</li>\n<li>Ideal para diversas ocasiões</li>\n</ul>\n<table height=\"30\"></table>",
+    "vendor": "",
+    "type": "",
+    "tags": [],
+    "published": true,
+    "seoTitle": "",
+    "seoDescription": "",
+    "options": [
+      {
+        "name": "Tamanho",
+        "values": [
+          "P",
+          "M",
+          "G"
+        ]
+      },
+      {
+        "name": "Cor",
+        "values": [
+          "Marrom"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "9163068674",
+        "title": "P / Marrom",
+        "option1": "P",
+        "option2": "Marrom",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/e066157e-c780-48f5-80bb-27598dac10b3-uzdqf.jpeg?v=1785426969"
+      },
+      {
+        "id": "5406498942",
+        "title": "M / Marrom",
+        "option1": "M",
+        "option2": "Marrom",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/e066157e-c780-48f5-80bb-27598dac10b3-uzdqf.jpeg?v=1785426969"
+      },
+      {
+        "id": "9762957248",
+        "title": "G / Marrom",
+        "option1": "G",
+        "option2": "Marrom",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/e066157e-c780-48f5-80bb-27598dac10b3-uzdqf.jpeg?v=1785426969"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.dooca.store/146020/products/e066157e-c780-48f5-80bb-27598dac10b3-uzdqf.jpeg?v=1785426969",
+        "position": 1,
+        "alt": "Batinha Bordada Amarração Marrom"
+      },
+      {
+        "src": "https://cdn.dooca.store/146020/products/a1b323d5-4905-4073-a7ec-8cae8b2f007f-aptbv.jpeg?v=1785426970",
+        "position": 2,
+        "alt": "Batinha Bordada Amarração Marrom"
+      },
+      {
+        "src": "https://cdn.dooca.store/146020/products/22fcb6c2-ddba-49e9-88a8-145e6e33fcf2-euslq.jpeg?v=1785426970",
+        "position": 3,
+        "alt": "Batinha Bordada Amarração Marrom"
+      },
+      {
+        "src": "https://cdn.dooca.store/146020/products/8d1c2e79-8ca5-4db7-b1be-ef0ddf47ffb6-q2ipw.jpeg?v=1786122987",
+        "position": 4,
+        "alt": "Batinha Bordada Amarração Marrom"
+      },
+      {
+        "src": "https://cdn.dooca.store/146020/products/7fea183d-a4be-4d8b-b9e8-6862835eca53-kxhz5.jpeg?v=1786122988",
+        "position": 5,
+        "alt": "Batinha Bordada Amarração Marrom"
       },
       {
         "src": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007",
-        "position": 3,
+        "position": 6,
         "alt": "Batinha Bordada Amarração Marrom"
       }
     ],
