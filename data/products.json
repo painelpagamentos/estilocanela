@@ -106935,19 +106935,21 @@
         "name": "Tamanho",
         "values": [
           "P",
-          "M"
+          "M",
+          "G"
         ]
       },
       {
         "name": "Cor",
         "values": [
-          "Preto"
+          "Preto",
+          "Marrom"
         ]
       }
     ],
     "variants": [
       {
-        "id": "2234179351",
+        "id": "1033932476",
         "title": "P / Preto",
         "option1": "P",
         "option2": "Preto",
@@ -106960,7 +106962,7 @@
         "image": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971"
       },
       {
-        "id": "7063466251",
+        "id": "1037523791",
         "title": "M / Preto",
         "option1": "M",
         "option2": "Preto",
@@ -106971,18 +106973,62 @@
         "inventoryQuantity": 999,
         "inventoryPolicy": "continue",
         "image": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971"
+      },
+      {
+        "id": "9212995719",
+        "title": "P / Marrom",
+        "option1": "P",
+        "option2": "Marrom",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007"
+      },
+      {
+        "id": "6716683350",
+        "title": "M / Marrom",
+        "option1": "M",
+        "option2": "Marrom",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007"
+      },
+      {
+        "id": "2162458844",
+        "title": "G / Marrom",
+        "option1": "G",
+        "option2": "Marrom",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007"
       }
     ],
     "images": [
       {
         "src": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971",
         "position": 1,
-        "alt": "Batinha Bordada Amarração"
+        "alt": "Batinha Bordada Amarração Preto"
       },
       {
         "src": "https://cdn.dooca.store/146020/products/b45c4446-71e3-45a8-90ef-63ebdbf5906e-uoewm.jpeg?v=1785426971",
         "position": 2,
-        "alt": "Batinha Bordada Amarração"
+        "alt": "Batinha Bordada Amarração Preto"
+      },
+      {
+        "src": "https://cdn.dooca.store/146020/products/46d728c1-de61-4100-bbae-0414c2d0dade-8nofj.jpeg?v=1786123007",
+        "position": 3,
+        "alt": "Batinha Bordada Amarração Marrom"
       }
     ],
     "collections": [
