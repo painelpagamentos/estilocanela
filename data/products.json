@@ -106918,5 +106918,77 @@
     ],
     "price": 99.99,
     "compareAtPrice": 0
+  },
+  {
+    "id": "6862763639",
+    "handle": "batinha-bordada-amarracao",
+    "title": "Batinha Bordada Amarração",
+    "description": "<p><b>Tecido</b>: Cetim</p>\n<p><b>Tamanhos</b>: P vestindo 36/38 - M vestindo 38/40 - G vestindo 40/42</p>\n<p><b>Medidas</b>:</p>\n<p>P - Comprimento: 58cm / Busto: 62cm / Cintura: 60cm</p>\n<p>M - Comprimento: 58cm / Busto: 64cm / Cintura: 62cm</p>\n<p>G - Comprimento: 58cm / Busto: 66cm / Cintura: 64cm</p>\n<p>________________________________________________________________________________________</p>\n<p>Delicada e cheia de personalidade, a <strong>Batinha Bordada com Amarração Frontal</strong> é a escolha perfeita para compor produções modernas e sofisticadas. Confeccionada em tecido leve, o modelo conta com bordados em relevo que valorizam a peça, decote profundo em V e fechamento por amarração frontal, garantindo um caimento elegante e ajustável ao corpo.</p>\n<p>Versátil, combina perfeitamente com calças jeans, pantalonas, saias ou shorts, criando looks que vão do casual chic ao noturno com muito estilo.</p>\n<p><b>Destaques da peça:</b></p>\n<ul>\n<li>Bordados em relevo com acabamento sofisticado</li>\n<li>Decote V profundo</li>\n<li>Fechamento por amarração frontal</li>\n<li>Fechamento por amarração nas costas</li>\n<li>Modelagem confortável e moderna</li>\n<li>Tecido leve e agradável ao vestir</li>\n<li>Ideal para diversas ocasiões</li>\n</ul>\n<table height=\"30\"></table>",
+    "vendor": "",
+    "type": "",
+    "tags": [],
+    "published": true,
+    "seoTitle": "",
+    "seoDescription": "",
+    "options": [
+      {
+        "name": "Tamanho",
+        "values": [
+          "P",
+          "M"
+        ]
+      },
+      {
+        "name": "Cor",
+        "values": [
+          "Preto"
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "2234179351",
+        "title": "P / Preto",
+        "option1": "P",
+        "option2": "Preto",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971"
+      },
+      {
+        "id": "7063466251",
+        "title": "M / Preto",
+        "option1": "M",
+        "option2": "Preto",
+        "option3": null,
+        "sku": "",
+        "price": 69.99,
+        "compareAtPrice": 119.99,
+        "inventoryQuantity": 999,
+        "inventoryPolicy": "continue",
+        "image": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971"
+      }
+    ],
+    "images": [
+      {
+        "src": "https://cdn.dooca.store/146020/products/8a7d5a71-1e0b-4862-81f6-a0d257648477-twe6h.jpeg?v=1785426971",
+        "position": 1,
+        "alt": "Batinha Bordada Amarração"
+      },
+      {
+        "src": "https://cdn.dooca.store/146020/products/b45c4446-71e3-45a8-90ef-63ebdbf5906e-uoewm.jpeg?v=1785426971",
+        "position": 2,
+        "alt": "Batinha Bordada Amarração"
+      }
+    ],
+    "collections": [
+      "blusas"
+    ],
+    "price": 69.99,
+    "compareAtPrice": 119.99
   }
 ]
