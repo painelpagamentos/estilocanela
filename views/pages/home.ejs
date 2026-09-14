@@ -411,6 +411,47 @@
     </div>
   </div></div>
 </section></div>
+<% var sec = homeSections[5]; %>
+
+<style>
+  #shopify-section-fc-<%= sec.handle %> .featured-collection {
+    background-color: #ffffff;
+  }
+
+  #shopify-section-fc-<%= sec.handle %> .featured-collection__header {
+    color: #000000;
+  }
+
+  #shopify-section-fc-<%= sec.handle %> .button {
+    color: #ffffff;
+    background-color: #000000;
+  }
+
+  #shopify-section-fc-<%= sec.handle %> .button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+</style>
+
+<div id="shopify-section-fc-<%= sec.handle %>" class="shopify-section"><section class="section" data-section-id="fc-<%= sec.handle %>" data-section-type="featured-collection" data-section-settings='{"stackable": false, "layout": "vertical"}'>
+  <div class="container container--flush"><div class="featured-collection">
+    <header class="featured-collection__header">
+      <h2 class="featured-collection__title heading h2"><%= sec.title %></h2>
+      <p class="featured-collection__text"><%= sec.text %></p>
+      <a href="/collections/<%= sec.handle %>" class="featured-collection__cta button button--floating">Ver Todos</a>
+    </header>
+    <div class="featured-collection__content">
+      <div class="scroller scroller--flush">
+        <div class="scroller__inner">
+          <div class="product-list product-list--scrollable">
+            <% sec.products.forEach(function(p) { %>
+              <%- include('../partials/product-item', { product: p, grid_classes: '1/2--lap 1/3--desk 1/4--wide' }) %>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section></div>
 <div id="shopify-section-image_with_text_Q63qFM" class="shopify-section"><section class="section" data-section-id="image_with_text_Q63qFM" data-section-type="image-with-text">
   <div class="container"><div class="image-with-text"><div class="image-with-text__image-container" style="width: 50%;"><div class="aspect-ratio" style="padding-bottom: 100.0%"><img class="lazyload image--fade-in" data-src="//yunabella.myshopify.com/cdn/shop/files/DPK7z83jPa__2_{width}x.png" data-widths="[300,400,500,600,700,800,900,1000]" data-sizes="auto" alt="">
 
