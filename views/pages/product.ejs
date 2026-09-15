@@ -130,11 +130,11 @@
         </div>
     </div>
 
-    <% if (product.description) { %>
+    <% if (product.fullDescription) { %>
     <div id="product-description" class="mt-4 col-12 p-0 px-md-3" data-store="product-description-<%= ecProduct.id %>">
         <div class="js-nubesdk-slot" data-nubesdk-slot="before_product_description"></div>
         <div class="product-description user-content">
-            <%- product.description %>
+            <%- product.fullDescription %>
         </div>
         <div class="js-nubesdk-slot" data-nubesdk-slot="after_product_description"></div>
     </div>
