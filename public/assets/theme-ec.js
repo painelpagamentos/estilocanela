@@ -1255,24 +1255,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ============================================================
-// Cookie banner (igual Nuvemshop): aparece até o usuário aceitar
-// ============================================================
-(function () {
-    var banner = document.querySelector('.js-notification-cookie-banner');
-    if (!banner) return;
-    var ack = null;
-    try { ack = localStorage.getItem('ec-cookies-ack'); } catch (e) {}
-    if (!ack) banner.style.display = '';
-    document.addEventListener('click', function (e) {
-        var btn = e.target.closest ? e.target.closest('.js-acknowledge-cookies') : null;
-        if (!btn) return;
-        e.preventDefault();
-        banner.style.display = 'none';
-        try { localStorage.setItem('ec-cookies-ack', '1'); } catch (err) {}
-    });
-})();
-
-// ============================================================
 // Modal CASHBACK da home: abre automaticamente após 2,5s
 // (igual Nuvemshop) e não reabre depois de interagido
 // ============================================================
