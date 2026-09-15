@@ -1,39 +1,47 @@
-    <body class="<%= typeof ecBodyClass !== 'undefined' && ecBodyClass ? ecBodyClass : ' template-home' %>">
+<body class="<%= typeof ecBodyClass !== 'undefined' && ecBodyClass ? ecBodyClass : ' template-home' %>">
 
-        <div id="nubesdk-root"></div>
-                                <div id="nubesdk-runtime"></div>
-                                                    <div
-                class="js-nubesdk-slot"
-                data-nubesdk-slot="before_main_content"
-                                                                                            ></div>
+<div id="nubesdk-root"></div>
+<div id="nubesdk-runtime"></div>
+<div class="js-nubesdk-slot" data-nubesdk-slot="before_main_content"></div>
 
-    <div class="js-modal-overlay modal-overlay  " data-modal-id="#cashback-modal" style="display: none;"></div>
-
-<div id="cashback-modal" class="js-modal   modal modal-bottom modal-bottom-sheet h-auto overflow-none modal-body-scrollable-auto modal-bottom modal--md transition-slide modal-centered-md m-0 p-0 modal-full-width modal-md-width-400px transition-soft  " style="display: none;"  >
-                        <div class="js-modal-close   modal-header  p-4 w-100">
-                                            <div class="row">
-                            <div class="col offset-2 text-center">
-                                        Cashback Estilo Canela!
-                                </div>
-                            <div class="col-2 text-right">
-                                <a class="js-modal-close">
-                                    <svg class="icon-inline icon-lg svg-icon-text"><use xlink:href="#times"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                                    </div>
-                <div class="modal-body text-center pb-4">
-                    <h3 class="h5 font-large mb-3">Ganhe cashback em todas as compras</h3>
-                    <p class="font-small mb-3 px-4">Na compra do seu look favorito você já garante cashback para usar na próxima compra. Quanto mais você compra, mais você ganha!</p>
-                </div>
-
+<!-- Faixa de anúncios rolante acima do cabeçalho -->
+<div class="ec-topbar" role="banner" aria-label="Benefícios da loja">
+    <div class="ec-topbar__track">
+        <span class="ec-topbar__text">FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 99,99</span>
+        <span class="ec-topbar__text">PRIMEIRA TROCA GRÁTIS</span>
+        <span class="ec-topbar__text">CASHBACK EM TODAS AS COMPRAS</span>
+        <span class="ec-topbar__text">FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 99,99</span>
+        <span class="ec-topbar__text">PRIMEIRA TROCA GRÁTIS</span>
+        <span class="ec-topbar__text">CASHBACK EM TODAS AS COMPRAS</span>
+        <!-- repetição para loop contínuo -->
+        <span class="ec-topbar__text">FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 99,99</span>
+        <span class="ec-topbar__text">PRIMEIRA TROCA GRÁTIS</span>
+        <span class="ec-topbar__text">CASHBACK EM TODAS AS COMPRAS</span>
+        <span class="ec-topbar__text">FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 99,99</span>
+        <span class="ec-topbar__text">PRIMEIRA TROCA GRÁTIS</span>
+        <span class="ec-topbar__text">CASHBACK EM TODAS AS COMPRAS</span>
     </div>
-
-<div class="js-modal-overlay modal-overlay  " data-modal-id="#cashback-modal" style="display: none;"></div>
-
-<!-- Cashback flutuante (ícone do tema rio) -->
-<div class="js-cashback-float cashback-float">
-    <button type="button" class="js-modal-cashback-open js-modal-open cashback-btn" data-toggle="#cashback-modal" aria-label="Cashback">
-        <svg class="icon-inline icon-lg"><use xlink:href="#cash-big"/></svg>
-    </button>
 </div>
+
+<div class="js-modal-overlay modal-overlay" data-modal-id="#cashback-modal" style="display: none;"></div>
+
+<div id="cashback-modal" class="js-modal modal modal-bottom modal-bottom-sheet h-auto overflow-none modal-body-scrollable-auto modal-bottom modal--md transition-slide modal-centered-md m-0 p-0 modal-full-width modal-md-width-400px transition-soft" style="display: none;">
+    <div class="js-modal-close modal-header p-4 w-100">
+        <div class="row">
+            <div class="col offset-2 text-center">Cashback Estilo Canela!</div>
+            <div class="col-2 text-right">
+                <a class="js-modal-close">
+                    <svg class="icon-inline icon-lg svg-icon-text"><use xlink:href="#times"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body text-center pb-4">
+        <h3 class="h5 font-large mb-3">Ganhe cashback em todas as compras</h3>
+        <p class="font-small mb-3 px-4">Na compra do seu look favorito você já garante cashback para usar na próxima compra. Quanto mais você compra, mais você ganha!</p>
+    </div>
+</div>
+
+<div class="js-modal-overlay modal-overlay" data-modal-id="#cashback-modal" style="display: none;"></div>
+
+<!-- Cashback flutuante removido -->

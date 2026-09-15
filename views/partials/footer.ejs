@@ -260,11 +260,158 @@
             if (opcao) {
                 evento.preventDefault();
                 evento.stopPropagation();
-                window.alert('Todas as atendentes estão ocupadas no momento. Aguarde 15 minutos para tentar novamente.');
+                if (typeof fecharPainel === 'function') fecharPainel();
+                abrirAviso();
+            }
+        });
+
+        // Aviso "atendentes ocupadas" em janelinha estilizada (no lugar do alert nativo)
+        // O HTML da janelinha vem depois deste script, então a busca é feita de forma preguiçosa.
+        function abrirAviso() {
+            var avisoBox = document.getElementById('ec-aviso-modal');
+            var avisoOverlay = document.getElementById('ec-aviso-overlay');
+            if (!avisoBox) return;
+            avisoBox.style.display = 'block';
+            if (avisoOverlay) avisoOverlay.style.display = 'block';
+        }
+
+        function fecharAviso() {
+            var avisoBox = document.getElementById('ec-aviso-modal');
+            var avisoOverlay = document.getElementById('ec-aviso-overlay');
+            if (!avisoBox) return;
+            avisoBox.style.display = 'none';
+            if (avisoOverlay) avisoOverlay.style.display = 'none';
+        }
+
+        document.addEventListener('click', function (evento) {
+            var avisoBox = document.getElementById('ec-aviso-modal');
+            if (!avisoBox || avisoBox.style.display !== 'block') return;
+            if (evento.target.closest('.js-ec-aviso-close') || evento.target.closest('.js-ec-aviso-btn') || evento.target.id === 'ec-aviso-overlay') {
+                evento.preventDefault();
+                fecharAviso();
+            }
+        });
+
+        document.addEventListener('keydown', function (evento) {
+            var avisoBox = document.getElementById('ec-aviso-modal');
+            if (evento.key === 'Escape' && avisoBox && avisoBox.style.display === 'block') {
+                fecharAviso();
             }
         });
     })();
 </script>
+
+<!-- ============================================================ -->
+<!-- Janelinha de aviso (atendimento ocupado) -->
+<!-- ============================================================ -->
+<style>
+    .ec-aviso-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(66, 62, 62, 0.5);
+        z-index: 1300;
+        display: none;
+    }
+
+    .ec-aviso {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 340px;
+        max-width: calc(100vw - 32px);
+        background: var(--main-background, #fbfaf6);
+        color: var(--main-foreground, #423e3e);
+        border: 1px solid var(--main-foreground-opacity-20, #423e3e33);
+        border-radius: 4px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+        z-index: 1301;
+        display: none;
+        font-family: var(--body-font, "Instrument Sans", sans-serif);
+    }
+
+    .ec-aviso__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--main-foreground-opacity-10, #423e3e1A);
+    }
+
+    .ec-aviso__titulo {
+        margin: 0;
+        font-family: var(--heading-font, "Roboto", sans-serif);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    .ec-aviso__close {
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        color: var(--main-foreground, #423e3e);
+        display: flex;
+        align-items: center;
+    }
+
+    .ec-aviso__close:hover {
+        opacity: 0.7;
+    }
+
+    .ec-aviso__body {
+        padding: 16px;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--main-foreground-opacity-80, #423e3eCC);
+    }
+
+    .ec-aviso__body strong {
+        color: var(--main-foreground, #423e3e);
+    }
+
+    .ec-aviso__footer {
+        padding: 0 16px 16px;
+        text-align: right;
+    }
+
+    .ec-aviso__btn {
+        background: var(--button-background, #c6a75e);
+        color: var(--button-foreground, #FFFFFF);
+        border: none;
+        border-radius: 3px;
+        padding: 9px 22px;
+        font-family: var(--body-font, "Instrument Sans", sans-serif);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+    }
+
+    .ec-aviso__btn:hover {
+        opacity: 0.85;
+    }
+</style>
+
+<div class="ec-aviso-overlay" id="ec-aviso-overlay"></div>
+
+<div class="ec-aviso" id="ec-aviso-modal" role="dialog" aria-modal="true" aria-label="Atendimento ocupado">
+    <div class="ec-aviso__header">
+        <h3 class="ec-aviso__titulo">Atendimento Estilo Canela</h3>
+        <button type="button" class="ec-aviso__close js-ec-aviso-close" aria-label="Fechar aviso">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+    <div class="ec-aviso__body">
+        Todas as atendentes estão ocupadas no momento. Aguarde <strong>15 minutos</strong> para tentar novamente.
+    </div>
+    <div class="ec-aviso__footer">
+        <button type="button" class="ec-aviso__btn js-ec-aviso-btn">Fechar</button>
+    </div>
+</div>
 
 <!-- ============================================================ -->
 <!-- Carrossel de banners (informative) + quickshop modal -->
@@ -298,4 +445,7 @@
 <script type="text/javascript" src="/assets/theme-ec.js?v=10" defer></script>
 
 <%- include('symbols') %>
+
+</body>
+</html>
 

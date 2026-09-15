@@ -1203,9 +1203,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // js-head-mutator do tema rio: adiciona .compress quando a página é rolada
+// Também recolhe o offset da topbar: no topo o cabeçalho fica abaixo da faixa
+// de anúncios; ao rolar, encosta no topo (top:0) para não deixar vão.
 (function () {
     var head = document.querySelector('.js-head-main');
     if (!head) return;
+    var topbar = document.querySelector('.ec-topbar');
     var ticking = false;
     function update() {
         ticking = false;
@@ -1213,6 +1216,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!head.classList.contains('compress')) head.classList.add('compress');
         } else {
             head.classList.remove('compress');
+        }
+        if (head.classList.contains('position-fixed')) {
+            head.style.top = window.scrollY > (topbar ? topbar.offsetHeight : 0) ? '0px' : (topbar ? topbar.offsetHeight : 0) + 'px';
         }
     }
     window.addEventListener('scroll', function () {
@@ -1264,9 +1270,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var dismissed = null;
     try { dismissed = localStorage.getItem('ec-cashback-dismissed'); } catch (e) {}
     if (dismissed) return;
-    setTimeout(function () {
-        if (typeof modalOpen === 'function') modalOpen('#home-modal');
-    }, 2500);
+    // Modal promocional desativado por padrão para não travar o scroll na home.
+    // Para reativar o auto-open, descomente a linha abaixo.
+    // setTimeout(function () {
+    //     if (typeof modalOpen === 'function') modalOpen('#home-modal');
+    // }, 2500);
     document.addEventListener('click', function (e) {
         if (!e.target.closest) return;
         var inModal = e.target.closest('#home-modal .js-modal-close') || e.target.closest('#home-modal .btn');

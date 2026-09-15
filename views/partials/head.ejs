@@ -285,4 +285,76 @@
         }
     }
     </style>
+
+    <style>
+        :root {
+            --ec-topbar-height: 32px;
+        }
+
+        /* Restaura o fundo do cabeçalho ao rolar (o tema rio fazia isso via JS próprio) */
+        header.head-main.compress {
+            background-color: var(--header-background, #fbfaf6);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .ec-topbar {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--ec-topbar-height);
+            background: var(--main-background, #fbfaf6);
+            color: var(--main-foreground, #423e3e);
+            font-family: var(--body-font, "Instrument Sans", sans-serif);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            overflow: hidden;
+            z-index: 1100;
+            border-bottom: 1px solid var(--main-foreground-opacity-10, #423e3e1A);
+        }
+
+        .ec-topbar__track {
+            display: flex;
+            width: max-content;
+            animation: ec-topbar-marquee 22s linear infinite;
+        }
+
+        .ec-topbar__text {
+            white-space: nowrap;
+            padding: 0 40px;
+            line-height: var(--ec-topbar-height);
+        }
+
+        @keyframes ec-topbar-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ec-topbar ~ header.head-main.position-fixed {
+            top: var(--ec-topbar-height);
+        }
+
+        @media (max-width: 767px) {
+            :root {
+                --ec-topbar-height: 28px;
+            }
+
+            .ec-topbar {
+                font-size: 10px;
+            }
+
+            .ec-topbar__text {
+                padding: 0 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ec-topbar__track {
+                animation: none;
+            }
+        }
+    </style>
+
 </head>
