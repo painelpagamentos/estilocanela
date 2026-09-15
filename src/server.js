@@ -78,10 +78,120 @@ app.locals.money = (v) => {
   return 'R$ ' + n.toFixed(2).replace('.', ',');
 };
 
+// ---------------------------------------------------------------
+// ecPrepare: converte o produto (estrutura Shopify importada) para
+// a estrutura ecProduct usada pelos partials do tema rio (Nuvemshop)
+// ---------------------------------------------------------------
+function ecPrepare(p) {
+  if (!p) return p;
+  if (p.__ecPrepared) return p;
+
+  const variantsRaw = Array.isArray(p.variants) ? p.variants : [];
+  const inStock = variantsRaw.some(v => (Number(v.inventoryQuantity) || 0) > 0 || v.inventoryPolicy === 'continue');
+  const firstVariant = variantsRaw[0] || {};
+  const firstImage = (Array.isArray(p.images) && p.images[0] && p.images[0].src) || (firstVariant.image) || '';
+  const secondImage = (Array.isArray(p.images) && p.images[1] && p.images[1].src) || '';
+
+  // srcset no padrão do tema (480w, 640w)
+  const buildSrcset = (src) => {
+    if (!src) return '';
+    return src + ' 480w, ' + src + ' 640w, ' + src + ' 1024w';
+  };
+
+  // ratio natural da imagem (igual Nuvemshop: padding-bottom = altura/largura)
+  const ratioOf = (img) => (img && img.width && img.height) ? Math.round((img.height / img.width) * 10000) / 100 : 150;
+  const firstImgObj = (Array.isArray(p.images) && p.images[0]) || null;
+
+  const price = Number(firstVariant.price != null ? firstVariant.price : p.price) || 0;
+  const compare = Number(firstVariant.compareAtPrice) || 0;
+  const compareClean = compare > price ? compare : 0;
+
+  // opções por variação (Cor, Tamanho, ...) no formato do tema
+  const options = Array.isArray(p.options) ? p.options : [];
+  const variantOptions = options.map((opt, idx) => {
+    const seen = new Set();
+    const values = [];
+    variantsRaw.forEach(v => {
+      const val = v['option' + (idx + 1)];
+      if (val && !seen.has(val)) { seen.add(val); values.push(val); }
+    });
+    return { name: opt.name || ('Variação ' + (idx + 1)), options: values };
+  }).filter(o => o.options.length);
+
+  // variantes em JSON para o quickshop (data-variants)
+  const quickshopVariants = variantsRaw.map(v => {
+    const opts = variantOptions.map((o, idx) => v['option' + (idx + 1)] || o.options[0] || '');
+    const img = v.image || firstImage;
+    return {
+      id: String(v.id || ''),
+      options: opts,
+      title: String(v.title || opts.join(' / ')),
+      price: Number(v.price) || 0,
+      image: img,
+      stock: (Number(v.inventoryQuantity) || 0) > 0 || v.inventoryPolicy === 'continue'
+    };
+  });
+
+  const cents = Math.round(price * 100);
+  const measurementGuide = p.measurementGuide || {
+    headers: ['Tamanho', 'Numeração', 'Busto', 'Cintura', 'Quadril'],
+    rows: [
+      ['PP', '34/36', '78-85', '60-66', '92-97'],
+      ['P', '36/38', '86-89', '67-73', '98-102'],
+      ['M', '40', '90-97', '74-80', '103-108'],
+      ['G', '42', '98-103', '81-87', '109-114']
+    ],
+    note: '* Todas as medidas estão em centímetros.'
+  };
+
+  p.__ecPrepared = true;
+  p.ec = {
+    id: String(p.id || p.handle),
+    handle: p.handle,
+    name: p.title || '',
+    description: (p.shortDescription || p.description || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 400),
+    fullDescription: p.description || '',
+    measurementGuide,
+    sku: String(firstVariant.sku || ''),
+    price: cents,
+    priceDisplay: price.toFixed(2).replace('.', ','),
+    priceDecimal: price.toFixed(2),
+    comparePrice: compareClean > 0 ? Math.round(compareClean * 100) : 0,
+    comparePriceDisplay: compareClean > 0 ? compareClean.toFixed(2).replace('.', ',') : '',
+    image: firstImage,
+    image2: secondImage,
+    imgRatio: ratioOf(firstImgObj),
+    imgWidth: (firstImgObj && firstImgObj.width) || 1600,
+    imgHeight: (firstImgObj && firstImgObj.height) || 2400,
+    srcset: buildSrcset(firstImage),
+    srcset2: buildSrcset(secondImage),
+    variants: variantOptions,
+    variantsJson: JSON.stringify({ variants: quickshopVariants }),
+    quickshopVariants,
+    variantId: String(firstVariant.id || ''),
+    inStock,
+    installments: { amount: 7, value: (Math.floor(cents / 7) / 100).toFixed(2).replace('.', ',') }
+  };
+
+  // expõe as chaves ec direto no objeto (os partials usam ecProduct.price etc.)
+  Object.assign(p, p.ec);
+  return p;
+}
+
+app.locals.ecPrepare = ecPrepare;
+
+// isHome: partials (header) usam para renderizar h1 oculto apenas na home (padrão Nuvemshop)
+app.use((req, res, next) => {
+  res.locals.isHome = (req.path === '/' || req.path === '');
+  next();
+});
+
 // Rotas
 app.get('/', (req, res) => {
   // Seções da home (featured-collection) alimentadas pelas coleções
-  const homeOrder = ['festival-de-conjunto-r8999', 'festival-de-vestidos-preco-maximo-99-99', 'conjuntos', 'vestidos', 'calcas', 'blusas', 'macacoes'];
+  const homeOrder = ['lancamentos', 'best-sellers', 'sale', 'conjuntos', 'vestidos', 'calcas', 'blusas'];
+  // Quantidade exibida por seção = igual à Nuvemshop original
+  const sectionLimit = { 'lancamentos': 3, 'best-sellers': 10, 'sale': 24 };
   const homeSections = homeOrder.map(handle => {
     const col = collections.find(c => c.handle === handle);
     const secProducts = col ? col.products.map(h => productsByHandle[h]).filter(Boolean) : [];
@@ -89,31 +199,50 @@ app.get('/', (req, res) => {
       handle,
       title: col ? col.title : handle,
       text: 'Na promoção',
-      products: secProducts.slice(0, 8)
+      products: secProducts.slice(0, sectionLimit[handle] || 8)
     };
+  });
+
+  // produtos para o quickshop do tema (window.__EC_PRODUCTS__) — apenas os exibidos
+  const ecProductsMap = {};
+  homeSections.forEach(sec => {
+    sec.products.forEach(p => {
+      const prepared = ecPrepare(p);
+      ecProductsMap[prepared.ec.id] = prepared.ec;
+    });
   });
 
   res.render('pages/home', {
     homeSections,
     products: products.slice(0, 12),
-    product: null
+    product: null,
+    ecProductsMap
   });
 });
 
-app.get('/collections/:handle', (req, res) => {
-  const handle = req.params.handle;
+// ---------------------------------------------------------------
+// Página de coleção no padrão Nuvemshop: /colecoes/:handle/
+// Também atende às categorias /roupas/:handle/ e featured
+// (/lancamentos/, /exclusivo-canela/, /best-sellers/, /sale/)
+// ---------------------------------------------------------------
+function renderCollection(req, res, handle, overTitle) {
   const page = parseInt(req.query.page || '1', 10) || 1;
-  const perPage = 24;
+  const perPage = 12;
   let collectionProducts = [];
-  let collectionTitle = 'Produtos';
+  let collectionTitle = overTitle || 'Produtos';
 
   if (handle === 'all') {
     collectionProducts = products;
-    collectionTitle = 'Todos os Produtos';
+    collectionTitle = overTitle || 'Todos os Produtos';
   } else {
-    collectionProducts = products.filter(p => p.collections.includes(handle));
+    // Ordem dos produtos = ordem da grid na Nuvemshop (collections.json)
     const col = collections.find(c => c.handle === handle);
-    if (col) collectionTitle = col.title;
+    if (col) {
+      collectionProducts = (col.products || []).map(h => productsByHandle[h]).filter(Boolean);
+    } else {
+      collectionProducts = products.filter(p => (p.collections || []).includes(handle));
+    }
+    if (col && col.title) collectionTitle = overTitle || col.title;
   }
 
   const total = collectionProducts.length;
@@ -130,19 +259,42 @@ app.get('/collections/:handle', (req, res) => {
     handle,
     product: null
   });
-});
+}
 
-app.get('/products/:handle', (req, res) => {
-  const handle = req.params.handle;
+app.get('/colecoes', (req, res) => renderCollection(req, res, 'colecoes'));
+app.get('/colecoes/:handle', (req, res) => renderCollection(req, res, req.params.handle));
+app.get('/colecoes/:handle/', (req, res) => renderCollection(req, res, req.params.handle));
+
+app.get('/roupas', (req, res) => renderCollection(req, res, 'roupas'));
+app.get('/roupas/:handle', (req, res) => renderCollection(req, res, req.params.handle));
+app.get('/roupas/:handle/', (req, res) => renderCollection(req, res, req.params.handle));
+
+app.get('/roupas/vestidos/curto1', (req, res) => renderCollection(req, res, 'curto1'));
+app.get('/roupas/vestidos/midi1', (req, res) => renderCollection(req, res, 'midi1'));
+app.get('/roupas/vestidos/longo1', (req, res) => renderCollection(req, res, 'longo1'));
+
+app.get('/lancamentos', (req, res) => renderCollection(req, res, 'lancamentos', 'LANÇAMENTOS'));
+app.get('/exclusivo-canela', (req, res) => renderCollection(req, res, 'exclusivo-canela', 'EXCLUSIVO CANELA⚡'));
+app.get('/best-sellers', (req, res) => renderCollection(req, res, 'best-sellers', 'BEST SELLERS'));
+app.get('/sale', (req, res) => renderCollection(req, res, 'sale', 'SALE'));
+
+// Compat: URLs Shopify antigas redirecionam para o padrão Nuvemshop
+app.get('/collections/:handle', (req, res) => res.redirect(301, '/colecoes/' + req.params.handle + '/'));
+app.get('/collections/:handle/', (req, res) => res.redirect(301, '/colecoes/' + req.params.handle + '/'));
+
+// ---------------------------------------------------------------
+// Página de produto no padrão Nuvemshop: /produtos/:handle/
+// ---------------------------------------------------------------
+function renderProduct(req, res, handle) {
   const product = productsByHandle[handle];
-  
+
   if (!product) {
     return res.status(404).send('Produto não encontrado');
   }
 
   // Produtos relacionados: mesma coleção primeiro, senão catálogo (excluindo o atual)
   let related = [];
-  const pool = product.collections.length
+  const pool = product.collections && product.collections.length
     ? products.filter(p => p.handle !== handle && p.collections.some(c => product.collections.includes(c)))
     : [];
   if (pool.length >= 4) {
@@ -153,7 +305,12 @@ app.get('/products/:handle', (req, res) => {
   related = related.slice(0, 8);
 
   res.render('pages/product', { product, relatedProducts: related });
-});
+}
+
+app.get('/produtos/:handle', (req, res) => renderProduct(req, res, req.params.handle));
+app.get('/produtos/:handle/', (req, res) => renderProduct(req, res, req.params.handle));
+app.get('/products/:handle', (req, res) => res.redirect(301, '/produtos/' + req.params.handle + '/'));
+app.get('/products/:handle/', (req, res) => res.redirect(301, '/produtos/' + req.params.handle + '/'));
 
 // Página de Carrinho
 // Busca (formulário do header usa /search?q=...)
@@ -201,6 +358,16 @@ app.get('/search', (req, res) => {
 
 app.get('/cart', (req, res) => {
   res.render('pages/cart', { product: null });
+});
+
+// Login visual (tema nuvem: link do header aponta para /account/login/)
+app.get('/account/login', (req, res) => {
+  res.send('<!DOCTYPE html><html lang="pt"><head><meta charset="utf-8"><title>Entrar | Estilo Canela Shop</title><link rel="stylesheet" type="text/css" href="/assets/ec-theme.css" media="all"><link rel="stylesheet" type="text/css" href="/assets/ec-colors.css" media="all"></head><body class="template-login"><div class="container" style="max-width: 480px; padding: 60px 15px;"><h1 class="h4 mb-4">Entrar</h1><div class="alert alert-info">Para acompanhar seus pedidos e cashback, entre com sua conta.</div><form><div class="form-group mb-3"><input class="form-control" type="email" name="email" placeholder="E-mail" aria-label="E-mail"></div><div class="form-group mb-4"><input class="form-control" type="password" name="password" placeholder="Senha" aria-label="Senha"></div><button type="button" class="btn btn-primary btn-block">Entrar</button></form><div class="divider my-4"></div><a href="/" class="btn-link">Voltar para a loja</a></div></body></html>');
+});
+
+// Frete (o tema referencia /frete/ para o calculador; endpoint simples)
+app.get('/frete', (req, res) => {
+  res.json({ success: true, methods: [] });
 });
 
 // Mock simples de carrinho para evitar erros de scripts antigos e permitir API REST
@@ -314,14 +481,54 @@ app.get('/obrigado', (req, res) => {
 // ---------------------------------------------------------------
 app.get('/pages/:handle', (req, res) => {
   const handle = req.params.handle;
-  const policy = Object.values(policies).find(p => path.basename(p.file, '.html') === handle);
-  if (policy) {
-    const content = fs.readFileSync(policy.file, 'utf8');
+
+  // Handles institucionais do site original (nuvemshop)
+  const policyByHandle = {
+    'politica-de-privacidade': 'privacy',
+    'trocas-e-devolucoes': 'returns',
+    'politica-de-envio': 'shipping',
+    'termos-de-uso': 'terms',
+    'politica-de-pagamento': 'payment',
+    'como-funciona-o-pagamento': 'payment'
+  };
+
+  const policyKey = policyByHandle[handle];
+  if (policyKey && policies[policyKey]) {
+    const policy = policies[policyKey];
+    const content = fs.existsSync(policy.file)
+      ? fs.readFileSync(policy.file, 'utf8')
+      : policy.defaultContent;
     return res.render('pages/policy', { title: policy.title, content, product: null });
   }
+
   if (handle === 'contact') {
     return res.render('pages/contact', { product: null });
   }
+
+  // Páginas institucionais (quem-somos, como-comprar, sobre-cashback)
+  const institutional = {
+    'quem-somos': {
+      title: 'Quem Somos',
+      content: '<p>A Estilo Canela nasceu para vestir mulheres que gostam de se destacar com peças selecionadas que valorizam a silhueta e transmitem confiança.</p><p>Av. Miruna, 187 - Indianópolis, São Paulo - SP, 04084-000</p>'
+    },
+    'como-comprar': {
+      title: 'Como Comprar',
+      content: '<p>Para comprar em nossa loja é muito fácil:</p><p><strong>1)</strong> Navegue pelas páginas de produtos, categorias, novidades, ofertas e destaques. Clique em Comprar ou em Ver Detalhes para obter mais informações. Depois, o produto será inserido no carrinho.</p><p><strong>2)</strong> Continue navegando até escolher todos os produtos desejados. Clique em Finalizar para concluir a compra.</p><p><strong>3)</strong> Entre com seu e-mail e senha. Se ainda não tiver cadastro, faça seu cadastro rapidamente.</p><p><strong>4)</strong> Escolha a forma de envio. Trabalhamos com Correios e transportadoras, com opções como Sedex e encomenda simples.</p><p><strong>5)</strong> Escolha a forma de pagamento disponível no checkout.</p><p><strong>6)</strong> As demais instruções serão enviadas por e-mail após a finalização do pedido.</p>'
+    },
+    'sobre-cashback': {
+      title: 'Sobre Cashback',
+      content: '<h2>Como funciona</h2><p>A cada compra realizada na Estilo Canela, você recebe <strong>8% de cashback</strong> sobre o valor das peças. Esse valor volta para você em dinheiro (R$) para usar como desconto na sua próxima compra.</p><h2>Como ganhar cashback</h2><ul><li>Você recebe 8% do valor das peças compradas.</li><li>O cálculo é feito somente sobre os produtos.</li><li>É válido para todas as formas de pagamento e todos os produtos do site.</li></ul><p><strong>Exemplo:</strong> comprou R$100 em peças, ganha R$8 de cashback.</p><h2>Como usar</h2><ol><li>Adicione os produtos ao carrinho.</li><li>Clique em Iniciar Compra.</li><li>Na etapa Entrega, informe seu CPF no campo de cashback.</li><li>O sistema identificará automaticamente seu saldo.</li><li>Escolha o valor dentro do limite permitido e conclua o pedido.</li></ol><p>O cashback pode ser usado para pagar até 20% do valor do pedido. Fica disponível em até 24 horas após a compra e vale por 45 dias corridos. O saldo é pessoal, vinculado ao CPF e não inclui o frete.</p><h2>Comunicação</h2><p>As informações da compra e do cashback serão enviadas pelo e-mail cadastrado.</p><h2>Trocas e devoluções</h2><p>Em caso de troca, vale-troca ou devolução, o crédito será gerado apenas sobre o valor efetivamente pago, sem incluir o valor resgatado em cashback.</p>'
+    }
+  };
+
+  if (institutional[handle]) {
+    return res.render('pages/policy', {
+      title: institutional[handle].title,
+      content: institutional[handle].content,
+      product: null
+    });
+  }
+
   return res.status(404).send('Página não encontrada');
 });
 
@@ -502,7 +709,7 @@ app.post('/webhooks/corvex', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-const HOST = process.env.HOST || '127.0.0.1'; // atrás do nginx (CloudPanel) só localhost precisa acessar
+const HOST = process.env.HOST || '::'; // '::' escuta IPv4+IPv6 (localhost resolve para ::1 ou 127.0.0.1)
 app.listen(PORT, HOST, () => {
   console.log('Servidor rodando em http://' + HOST + ':' + PORT);
 });

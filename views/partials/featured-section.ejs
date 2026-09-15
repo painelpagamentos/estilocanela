@@ -1,0 +1,74 @@
+    	                            <section class="section-featured-home" data-store="<%= ecSection.store %>">
+
+                                                            <div
+                class="js-nubesdk-slot"
+                data-nubesdk-slot="before_section_<%= ecSection.slot %>"
+                                                                                            ></div>
+            
+
+                                    
+<% if (ecSection.format === 'slider') { %>
+<div class="js-products-<%= ecSection.id %>-container container-fluid">
+    <div class="row">
+        <h2 class="js-products-<%= ecSection.id %>-title section-title h5 mb-1 text-center col-12" >
+            <%= ecSection.title %>
+        </h2>
+        <div class="js-products-<%= ecSection.id %>-col col-12 p-0">
+                            <div class="js-swiper-<%= ecSection.id %> swiper-container">
+                                <div class="js-products-<%= ecSection.id %>-grid js-products-home-grid  swiper-wrapper" 
+                    data-desktop-columns="4" 
+                    data-mobile-columns="1" 
+                    data-desktop-grid="false" 
+                    data-desktop-grid-columns="4" 
+                    data-mobile-grid="false" 
+                    data-mobile-grid-columns="2" 
+                    data-mobile-grid-slider-columns="2.25" 
+                    data-mobile-slider-columns="1.15" 
+                    data-format="slider" 
+                    data-section-id="<%= ecSection.id %>">
+<% } else { %>
+<div class="js-products-<%= ecSection.id %>-container container-fluid">
+    <div class="row">
+        <h2 class="js-products-<%= ecSection.id %>-title section-title h5 mb-1 text-center col-12" >
+            <%= ecSection.title %>
+        </h2>
+        <div class="js-products-<%= ecSection.id %>-col col-12 pl-0">
+                                <div class="js-products-<%= ecSection.id %>-grid js-products-home-grid  row" 
+                    data-desktop-columns="4" 
+                    data-mobile-columns="2" 
+                    data-desktop-grid="false" 
+                    data-desktop-grid-columns="4" 
+                    data-mobile-grid="false" 
+                    data-mobile-grid-columns="2" 
+                    data-mobile-grid-slider-columns="2.25" 
+                    data-mobile-slider-columns="2.25" 
+                    data-format="grid" 
+                    data-section-id="<%= ecSection.id %>">
+<% } %>
+                                                                                    
+<% ecSection.products.forEach(function (ecProduct) { %>
+    <%- include('product-item.ejs', { ecProduct: ecProduct, layout: ecSection.format === 'slider' ? 'slider' : 'grid' }) %>
+<% }); %>
+
+                                                                                                                </div>
+<% if (ecSection.format === 'slider') { %>
+                                                                                        
+    <div class="js-swiper-<%= ecSection.id %>-prev swiper-button-prev d-none d-md-block svg-square svg-icon-text">
+        <svg class="icon-inline icon-flip-horizontal icon-lg"><use xlink:href="#chevron"/></svg>
+    </div>
+    <div class="js-swiper-<%= ecSection.id %>-next swiper-button-next d-none d-md-block svg-square svg-icon-text">
+        <svg class="icon-inline icon-lg"><use xlink:href="#chevron"/></svg>
+    </div>
+                            </div>
+<% } %>
+        </div>
+    </div>
+</div>
+
+                                                            <div
+                class="js-nubesdk-slot"
+                data-nubesdk-slot="after_section_<%= ecSection.slot %>"
+                                                                                            ></div>
+            
+            </section>
+        	

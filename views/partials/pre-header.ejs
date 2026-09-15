@@ -1,67 +1,39 @@
+    <body class="<%= typeof ecBodyClass !== 'undefined' && ecBodyClass ? ecBodyClass : ' template-home' %>">
 
+        <div id="nubesdk-root"></div>
+                                <div id="nubesdk-runtime"></div>
+                                                    <div
+                class="js-nubesdk-slot"
+                data-nubesdk-slot="before_main_content"
+                                                                                            ></div>
 
-  <body class="Evolution--v2.2 features--animate-zoom template-index " data-instant-intensity="viewport">
+    <div class="js-modal-overlay modal-overlay  " data-modal-id="#cashback-modal" style="display: none;"></div>
 
-    <a href="#main" class="visually-hidden skip-to-content">Pular </a>
-    <span class="loading-bar" style="width: 0px;"></span>
+<div id="cashback-modal" class="js-modal   modal modal-bottom modal-bottom-sheet h-auto overflow-none modal-body-scrollable-auto modal-bottom modal--md transition-slide modal-centered-md m-0 p-0 modal-full-width modal-md-width-400px transition-soft  " style="display: none;"  >
+                        <div class="js-modal-close   modal-header  p-4 w-100">
+                                            <div class="row">
+                            <div class="col offset-2 text-center">
+                                        Cashback Estilo Canela!
+                                </div>
+                            <div class="col-2 text-right">
+                                <a class="js-modal-close">
+                                    <svg class="icon-inline icon-lg svg-icon-text"><use xlink:href="#times"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                                    </div>
+                <div class="modal-body text-center pb-4">
+                    <h3 class="h5 font-large mb-3">Ganhe cashback em todas as compras</h3>
+                    <p class="font-small mb-3 px-4">Na compra do seu look favorito você já garante cashback para usar na próxima compra. Quanto mais você compra, mais você ganha!</p>
+                </div>
 
-    <div id="shopify-section-announcement-bar" class="shopify-section"></div>
+    </div>
 
-    <div id="shopify-section-ad-banner" class="shopify-section"><section data-section-id="ad-banner" data-section-type="top-banner" data-section-settings=""></section>
+<div class="js-modal-overlay modal-overlay  " data-modal-id="#cashback-modal" style="display: none;"></div>
 
-  
-    <script>
-        $(document).ready(function () {
-            if ($.fn.simplyScroll) { $("#ad-banner").simplyScroll(); } /* guarda: simplyScroll nao existe em nenhum asset do tema; sem isso o TypeError abortava o resto deste callback */
-
-            $(".banner").on("touchstart", function () {
-                this.click();
-            });
-
-            
-                $(".simply-scroll-clip").on("click touchstart", function() {
-                    window.location.href = '/collections/all';
-                });
-            
-        });
-    </script>
-  
-
-  <style>
-    
-    #ad-banner {
-      cursor: pointer;
-    }
-    
-
-    #ad-banner {
-      background-color: #80007f;
-    }
-
-    #ad-banner .banner {
-      background-color: #80007f;
-      content: url(//yunabella.myshopify.com/cdn/shopifycloud/storefront/assets/no-image-2048-a2addb12_750x83.gif);
-    }
-
-    @media screen and (min-width: 701px) {
-      #ad-banner .banner {
-        content: url(//yunabella.myshopify.com/cdn/shopifycloud/storefront/assets/no-image-2048-a2addb12_1920x50.gif);
-      }
-    }
-
-    .simply-scroll-container {
-      position: relative;
-    }
-
-    .simply-scroll-clip {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .simply-scroll-list {
-      width: auto !important;
-    }
-  </style></div>
-<div id="shopify-section-popups" class="shopify-section"><div data-section-id="popups" data-section-type="popups"></div>
-
+<!-- Cashback flutuante (ícone do tema rio) -->
+<div class="js-cashback-float cashback-float">
+    <button type="button" class="js-modal-cashback-open js-modal-open cashback-btn" data-toggle="#cashback-modal" aria-label="Cashback">
+        <svg class="icon-inline icon-lg"><use xlink:href="#cash-big"/></svg>
+    </button>
 </div>

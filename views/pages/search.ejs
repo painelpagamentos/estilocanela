@@ -1,45 +1,36 @@
-<%- include('../partials/head') %>
-<%- include('../partials/pre-header') %>
+﻿<%- include('../partials/head', { ecTitle: typeof ecTitle !== 'undefined' ? ecTitle : '' , ecBodyClass: ' template-search' }) %>
+<%- include('../partials/pre-header', { ecBodyClass: ' template-search' }) %>
 <%- include('../partials/header') %>
 
-<main id="main" role="main">
-  <div class="container">
-    <header class="page__header page__header--stack">
-      <h1 class="page__title heading h1">Busca</h1>
-      <% if (query) { %>
-      <p class="page__description">Resultados para "<strong><%= query %></strong>" (<%= products.length %> encontrado(s))</p>
-      <% } else { %>
-      <p class="page__description">Digite um termo para buscar produtos.</p>
-      <% } %>
-    </header>
-  </div>
-
-  <div class="container container--flush">
-    <div class="collection__dynamic-part" data-collection-dynamic-part>
-      <div class="page__sub-header">
-        <nav aria-label="breadcrumb" class="breadcrumb breadcrumb--floating hidden-phone">
-          <ol class="breadcrumb__list" role="list">
-            <li class="breadcrumb__item"><a class="breadcrumb__link link" href="/">Início</a></li>
-            <li class="breadcrumb__item"><span class="breadcrumb__link" aria-current="page">Busca</span></li>
-          </ol>
-        </nav>
-      </div>
-
-      <% if (products.length === 0) { %>
-        <div class="empty-state">
-          <div class="empty-state__icon"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#000" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></div>
-          <p class="empty-state__heading heading h1">Nenhum resultado para "<%= query %>"</p>
-          <div class="empty-state__button-container"><a href="/collections/all" class="empty-state__button button button--primary">Ver todos os produtos</a></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="breadcrumbs  mb-0 mb-md-2">
+                <a href="/" class="crumb">Início</a> > <span class="crumb">Busca</span>
+            </div>
+            <section class="page-header  " data-store="page-title">
+                <h1 class="h4">Busca: "<%= query %>"</h1>
+            </section>
+            <div class="divider mb-4"></div>
         </div>
-      <% } else { %>
-        <div class="product-list product-list--collection">
-          <% products.forEach(function(p) { %>
-            <%- include('../partials/product-item', { product: p, grid_classes: '1/3--tablet 1/4--lap-and-up' }) %>
-          <% }) %>
-        </div>
-      <% } %>
     </div>
-  </div>
-</main>
+    <div class="row">
+        <div class="col-12" data-store="search-grid">
+            <div class="js-product-table row">
+                <% if (products.length) { %>
+                    <% products.forEach(function (ecProduct) { %>
+                        <% ecProduct = ecPrepare(ecProduct) %>
+                        <%- include('../partials/product-item.ejs', { ecProduct: ecProduct, layout: 'grid' }) %>
+                    <% }); %>
+                <% } else { %>
+                    <div class="col-12">
+                        <div class="alert alert-info">Nenhum produto encontrado para "<%= query %>".</div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>
+<%- include('../partials/modals') %>

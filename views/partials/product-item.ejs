@@ -1,24 +1,214 @@
-<% if (typeof money !== 'function') { var money = function(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ','); }; } %>
-<% var img = product.images && product.images.length ? product.images : []; %>
-<% var disc = (product.compareAtPrice && product.compareAtPrice > product.price) ? Math.round((1 - product.price / product.compareAtPrice) * 100) : 0; %>
-<div class="product-item product-item--vertical <%= grid_classes %>">
-  <% if (disc) { %><div class="product-item__label-list"><span class="product-label product-label--on-sale"><%= disc %>% OFF</span></div><% } %>
-  <a href="/products/<%= product.handle %>" class="product-item__image-wrapper<% if (img.length > 1) { %> product-item__image-wrapper--with-secondary<% } %>">
-    <div class="aspect-ratio aspect-ratio--tall" style="padding-bottom: 133.33333333333334%">
-      <% if (img.length) { %>
-      <img class="product-item__primary-image" src="<%= img[0].src %>" alt="<%= product.title %>">
-      <% if (img[1]) { %><img class="product-item__secondary-image" src="<%= img[1].src %>" alt="<%= product.title %>"><% } %>
-      <% } %>
+<% var isGrid = (typeof layout !== 'undefined' && layout === 'grid'); %>
+<% if (!isGrid) { %><div class="swiper-slide"><% } %>
+    <div class="js-item-product <%= isGrid ? 'col-6 col-md-3' : 'js-item-slide p-0' %> item item-product  grid-item " data-product-type="list" data-product-id="<%= ecProduct.id %>" data-store="product-item-<%= ecProduct.id %>" data-component="product-list-item" data-component-value="<%= ecProduct.id %>" data-transition="fade-in-up">
+                    <div class="js-product-container js-quickshop-container js-quickshop-has-variants position-relative" data-variants="<%= ecProduct.variantsJson %>" data-quickshop-id="<%= ecProduct.id %>">
+                    
+
+<div class="js-product-item-image-container-private js-product-item-private-with-secondary-images product-item-image-container item-image" data-store="product-item-image-<%= ecProduct.id %>" data-images-url="">
+    
+                                                            <div style="padding-bottom: <%= ecProduct.imgRatio %>%;" class="position-relative d-block">
+                <a href="/produtos/<%= ecProduct.handle %>/" title="<%= ecProduct.name %>" aria-label="<%= ecProduct.name %>" class="js-product-item-image-link-private ">
+
+<img
+				width="<%= ecProduct.imgWidth %>"
+
+			height="<%= ecProduct.imgHeight %>"
+	 
+	src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+	data-srcset="<%= ecProduct.srcset %>" 
+				class="lazyload js-product-item-image-private product-item-image js-item-image lazyautosizes lazyload fade-in img-absolute img-absolute-centered product-item-image-featured item-image-featured" 
+				sizes="(max-width: 768px)100vw, (min-width: 769px)33vw" 
+				data-expand="-10" 
+		alt="<%= ecProduct.name %>" 
+	/>
+
+<% if (ecProduct.image2) { %>
+<img
+				width="<%= ecProduct.imgWidth %>"
+
+			height="<%= ecProduct.imgHeight %>"
+	 
+	src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+	data-srcset="<%= ecProduct.srcset2 %>" 
+				class="lazyload js-product-item-image-private product-item-image js-item-image lazyautosizes lazyload fade-in img-absolute img-absolute-centered js-product-item-secondary-image-private product-item-image-secondary item-image-secondary" 
+				sizes="(max-width: 768px)100vw, (min-width: 769px)33vw" 
+					data-sizes="auto" 
+		alt="<%= ecProduct.name %>" 
+	/>
+<% } %>
+
+                                    <div class="placeholder-fade">
+                    </div>
+                            </a>
+
+                                                        <div class="item-floating-elements">
+                                                                                                                
+
+	<div class="labels js-labels-floating-group " data-store="product-item-labels">
+		
+								<div class="js-stock-label-private label js-stock-label label label-default" data-store="product-item-label-stock" data-label="Esgotado" style="display:none;">
+																</div>
+				
+					<div class="js-offer-label-private label js-offer-label label label-accent" data-store="product-item-offer-label" data-promotion-type="price-discounts" style="display:none;">
+									
+									
+					
+					<span class="label-offer-percentage ">
+						<span class="js-offer-percentage">0</span>%
+					</span>
+											<span class="label-offer-percentage-text "> OFF</span>
+																</div>
+		
+		
+		
+		
+			<div class="js-shipping-label-private js-free-shipping-minimum-label label label label-accent" data-store="product-item-label-shipping" data-promotion-type="free-shipping"  style="display: none;">
+										Frete grátis
+										</div>
+		
+		
+	</div>
+<span class="hidden" data-store="stock-product-<%= ecProduct.id %>-<%= ecProduct.variantId %>"></span>
+<span class="js-free-shipping-combines-config hidden" data-combines="true"></span>
+                                                        </div>
+                    
+            
+            
+                        </div>
     </div>
-  </a>
-  <div class="product-item__info">
-    <div class="product-item__info-inner">
-      <a href="/products/<%= product.handle %>" class="product-item__title text--strong link" style="color: #000;"><%= product.title %></a>
-      <div class="product-item__price-list price-list">
-        <span class="price price--highlight"><span class="visually-hidden">Preço por</span><%= money(product.price) %></span>
-        <% if (disc) { %><span class="price price--compare"><span class="visually-hidden">Preço </span><%= money(product.compareAtPrice) %></span><% } %>
-        <p class="parcelamento" style="font-size:13px; margin-top: 0; margin-bottom: 10px">em 12x de <span style="color: black;"><b style="font-size:13px;"><%= money(product.price / 12) %></b></span></p>
-      </div>
+
+        
+                                        <div class="position-relative">
+                            <div class="js-item-variants item-variants item-variants-hidden transition-soft">
+                    <form class="js-product-form" method="post" action="/comprar/">
+                        <input type="hidden" name="add_to_cart" value="<%= ecProduct.id %>" />
+                                                    
+<div class="js-product-variants js-product-quickshop-variants quickshop-variants form-row">
+		
+		<% ecProduct.variants.forEach(function (ecVariant, ecVariantIndex) { %>
+		<div class="js-product-variants-group<%= ecVariantIndex === 0 ? ' js-color-variants-container' : '' %> col-12 mb-2 " data-variation-id="<%= ecVariantIndex %>">
+							
+<div class="form-group mb-2">
+            <label  class="form-label mb-1" for="variation_<%= ecVariantIndex + 1 %>_<%= ecProduct.id %>"><%= ecVariant.name %></label>
+        <select 
+        id="variation_<%= ecVariantIndex + 1 %>_<%= ecProduct.id %>"        class="form-select js-variation-option js-refresh-installment-data form-control-small "
+        name="variation[<%= ecVariantIndex %>]"        >
+        													<% ecVariant.options.forEach(function (ecOption, ecOptionIndex) { %><option value="<%= ecOption %>" <%= ecOptionIndex === 0 ? 'selected="selected"' : '' %>><%= ecOption %></option>
+													<% }); %>											    </select>
+    <div class="form-select-icon">
+        <svg class="icon-inline icon-w-14 icon-lg icon-rotate-90"><use xlink:href="#chevron"/></svg>
     </div>
-  </div>
 </div>
+
+								</div>
+		<% }); %>									</div>                                                                        
+                        
+                        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary w-100 mb-2 cart" value="Comprar"  />
+
+                        
+                        <div class="js-addtocart js-addtocart-placeholder btn btn-primary btn-block btn-transition mb-2 disabled" style="display: none;">
+    <div class="d-inline-block">
+        <span class="js-addtocart-text">
+                            Comprar 
+                    </span>
+        <span class="js-addtocart-success transition-container">
+                            Pronto!
+                    </span>
+        <div class="js-addtocart-adding js-addtocart-adding-text transition-container">
+                            Incluindo...
+                    </div>
+    </div>
+</div>                    </form>
+                </div>
+                            </div>
+            
+                <div class="js-item-description item-description" data-store="product-item-info-<%= ecProduct.id %>">
+            <a href="/produtos/<%= ecProduct.handle %>/" title="<%= ecProduct.name %>" aria-label="<%= ecProduct.name %>" class="item-link item-link-quickshop">
+
+                <div class="js-item-name item-name mb-2 " data-store="product-item-name-<%= ecProduct.id %>"><%= ecProduct.name %></div>
+
+                                                                                    <div class="js-item-price-container item-price-container mb-2" data-store="product-item-price-<%= ecProduct.id %>">
+                                                            <span class="js-compare-price-display price-compare " style="<%= ecProduct.comparePrice ? '' : 'display:none;' %>" data-price-compare-visibility="<%= ecProduct.comparePrice ? 'true' : 'false' %>">
+                                    R$<%= ecProduct.comparePriceDisplay %>
+                                </span>
+                                                        <span class="js-price-display item-price" data-product-price="<%= ecProduct.price %>">
+                                R$<%= ecProduct.priceDisplay %>
+                            </span>
+                            
+
+                        </div>
+                                                                                
+                
+                                                                                    
+									<div class="js-max-installments-container js-max-installments item-installments">
+
+				
+									<div class="js-max-installments product-installments installment-no-interest">
+
+																		
+																				
+						<span class='js-installment-amount product-installment-amount'><%= ecProduct.installments.amount %></span>
+
+						
+						<span>
+															x
+															
+															de
+													</span>
+
+						
+						<span class='js-installment-price product-installment-value'>R$<%= ecProduct.installments.value %></span>
+
+						
+													<span>
+								sem juros
+							</span>
+											</div>
+							</div>
+			
+
+                            </a>
+                            <div class="js-item-quickshop item-actions-inline ">
+                                    
+                                    <button type="button" class="js-item-buy-open item-btn-quickshop" title="Compra rápida de <%= ecProduct.name %>" aria-label="Compra rápida de <%= ecProduct.name %>">
+                                        <svg class="icon-inline icon-lg svg-icon-text"><use xlink:href="#bag"/></svg>
+                                    </button>
+                                    <button type="button" class="js-item-buy-close item-btn-quickshop" aria-label="Fechar compra rápida" style="display: none;">
+                                        <svg class="icon-inline icon-lg svg-icon-text"><use xlink:href="#times"/></svg>
+                                    </button>
+                                                                                                        </div>
+                    </div>
+                    </div>                
+            
+    
+    <script type="application/ld+json" data-component='structured-data.item'>
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.estilocanela.com.br/produtos/<%= ecProduct.handle %>/"
+        },
+        "name": "<%= ecProduct.name %>",
+        "image": "<%= ecProduct.image %>",
+        "description": "<%= ecProduct.description %>",
+                "sku": "<%= ecProduct.sku %>",
+                            "brand": {
+                "@type": "Brand",
+                "name": "Estilo Canela Shop"
+            },
+                        "offers": {
+            "@type": "Offer",
+            "url": "https://www.estilocanela.com.br/produtos/<%= ecProduct.handle %>/",
+            "priceCurrency": "BRL",
+            "price": "<%= ecProduct.priceDecimal %>",
+            "availability": "https://schema.org/<%= ecProduct.inStock ? 'InStock' : 'OutOfStock' %>",
+            "seller": {
+                "@type": "Organization",
+                "name": "Estilo Canela Shop"
+            }
+        }    }
+    </script>
+
+    </div>
+<% if (!isGrid) { %></div><% } %>

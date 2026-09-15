@@ -1,31 +1,47 @@
 <% var money = function(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ','); }; %>
 <% if (results.length > 0) { %>
-  <p class="search-bar__result-category">Produtos</p>
-  <div class="search-bar__result-products">
+    <div class="js-search-suggest-item search-suggest-item">
+    <div class="search-suggest-list-item">
+    <div class="js-search-results-list-item row">
+    <p class="search-suggest-category h5 mb-1 text-center col-12">
+        Produtos
+    </p>
     <% results.forEach(function(p) { %>
-      <% var img = p.images && p.images.length ? p.images[0].src : ''; %>
-      <a href="/products/<%= p.handle %>" class="search-bar__result-item">
-        <div class="search-bar__image-container">
-          <div class="aspect-ratio aspect-ratio--square" style="padding-bottom: 100%">
-            <% if (img) { %><img src="<%= img %>" alt="<%= p.title %>"><% } %>
-          </div>
+        <% var img = p.images && p.images.length ? p.images[0].src : ''; %>
+        <div class="swiper-slide">
+        <div class="js-item-product js-item-slide p-0 item item-product grid-item">
+            <div class="js-product-container position-relative">
+                <div class="js-product-item-image-container product-item-image-container item-image">
+                    <div style="padding-bottom: 150%;" class="position-relative d-block">
+                        <a href="/produtos/<%= p.handle %>/" title="<%= p.title %>" aria-label="<%= p.title %>" class="js-product-item-image-link">
+                            <% if (img) { %>
+                            <img width="1600" height="2400" src="<%= img %>" class="product-item-image js-item-image fade-in img-absolute img-absolute-centered product-item-image-featured item-image-featured" alt="<%= p.title %>" />
+                            <% } %>
+                            <div class="placeholder-fade"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="js-item-description item-description">
+                    <a href="/produtos/<%= p.handle %>/" title="<%= p.title %>" aria-label="<%= p.title %>" class="item-link">
+                        <div class="js-item-name item-name mb-2"><%= p.title %></div>
+                        <div class="js-item-price-container item-price-container mb-2">
+                            <span class="js-price-display item-price"><%= money(p.price) %></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="search-bar__item-info">
-          <p class="search-bar__item-title"><%= p.title %></p>
-          <span class="search-bar__item-price"><%= money(p.price) %></span>
         </div>
-      </a>
     <% }) %>
-  </div>
-  <% if (total > 4) { %>
-    <button class="search-bar__view-all" type="submit">Ver todos os resultados
-      <svg focusable="false" class="icon icon--arrow-right" viewBox="0 0 8 12" role="presentation">
-        <path stroke="currentColor" stroke-width="2" d="M2 2l4 4-4 4" fill="none" stroke-linecap="square"></path>
-      </svg>
+    </div>
+    </div>
+    <div class="divider mt-2 mb-2"></div>
+    <button class="js-search-suggest-all-link search-suggest-all-link btn btn-primary btn-block mb-2" type="submit">
+        Ver todos os resultados
     </button>
-  <% } %>
+    </div>
 <% } else { %>
-  <div class="search-bar__empty-state">
-    <p class="heading h4">Nenhum resultado encontrado</p>
-  </div>
+    <div class="js-search-suggest-item search-suggest-item">
+        <p class="h5 mb-1 text-center col-12">Nenhum resultado encontrado</p>
+    </div>
 <% } %>

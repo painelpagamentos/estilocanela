@@ -2,3 +2,9 @@
 node_modules/
 data/orders-log.json
 *.bak
+contact-check.html
+data/products.backup-dims.json
+data/backup-yuna/
+server-err.log
+server.log
+
