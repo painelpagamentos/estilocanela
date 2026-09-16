@@ -11142,9 +11142,19 @@
         "position": 6,
         "alt": "",
         "src": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/2a5ee189429fef5584678a8b5eac364f-a941f063df5f3fb3d917773977819390-1024-1024.webp"
+      },
+      {
+        "position": 7,
+        "alt": "Vestido Florença Branco",
+        "src": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/daca8e4c5559009e6f0b19b3bca7574b-dfbec20fb3a49feaf417773977687095-1024-1024.webp"
+      },
+      {
+        "position": 8,
+        "alt": "Vestido Florença Azul Marinho",
+        "src": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/d42375f121929df2ef081404293f6943-577128b5c80648544717773969612461-1024-1024.webp"
       }
     ],
-    "title": "Vestido Florença - Nude",
+    "title": "Vestido Florença",
     "tags": [],
     "type": "",
     "price": 122.46,
@@ -11154,58 +11164,170 @@
     "variants": [
       {
         "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/e2e62589ea09ed24f8bf380e148bec8d-34cdeeb076e91161af17773977764519-1024-1024.webp",
-        "option2": null,
+        "option2": "PP",
         "id": "1800000126",
         "option3": null,
         "sku": "110030401-PP",
-        "option1": "PP",
+        "option1": "Nude",
         "price": 122.46,
         "compareAtPrice": 174.95,
         "inventoryQuantity": 10,
         "inventoryPolicy": "deny",
-        "title": "PP"
+        "title": "Nude / PP"
       },
       {
         "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/e2e62589ea09ed24f8bf380e148bec8d-34cdeeb076e91161af17773977764519-1024-1024.webp",
-        "option2": null,
+        "option2": "P",
         "id": "1514381974",
         "option3": null,
         "sku": "110030401",
-        "option1": "P",
+        "option1": "Nude",
         "price": 122.46,
         "compareAtPrice": 174.95,
         "inventoryQuantity": 10,
         "inventoryPolicy": "deny",
-        "title": "P"
+        "title": "Nude / P"
       },
       {
         "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/e2e62589ea09ed24f8bf380e148bec8d-34cdeeb076e91161af17773977764519-1024-1024.webp",
-        "option2": null,
+        "option2": "M",
         "id": "1514381985",
         "option3": null,
         "sku": "110030402",
-        "option1": "M",
+        "option1": "Nude",
         "price": 122.46,
         "compareAtPrice": 174.95,
         "inventoryQuantity": 10,
         "inventoryPolicy": "deny",
-        "title": "M"
+        "title": "Nude / M"
       },
       {
         "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/e2e62589ea09ed24f8bf380e148bec8d-34cdeeb076e91161af17773977764519-1024-1024.webp",
-        "option2": null,
+        "option2": "G",
         "id": "1800000127",
         "option3": null,
         "sku": "110030401-G",
-        "option1": "G",
+        "option1": "Nude",
         "price": 122.46,
         "compareAtPrice": 174.95,
         "inventoryQuantity": 10,
         "inventoryPolicy": "deny",
-        "title": "G"
+        "title": "Nude / G"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/daca8e4c5559009e6f0b19b3bca7574b-dfbec20fb3a49feaf417773977687095-1024-1024.webp",
+        "option2": "PP",
+        "id": "1900000001",
+        "option3": null,
+        "sku": "1100303PP",
+        "option1": "Branco",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Branco / PP"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/daca8e4c5559009e6f0b19b3bca7574b-dfbec20fb3a49feaf417773977687095-1024-1024.webp",
+        "option2": "P",
+        "id": "1900000002",
+        "option3": null,
+        "sku": "1100303P",
+        "option1": "Branco",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Branco / P"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/daca8e4c5559009e6f0b19b3bca7574b-dfbec20fb3a49feaf417773977687095-1024-1024.webp",
+        "option2": "M",
+        "id": "1900000003",
+        "option3": null,
+        "sku": "1100303M",
+        "option1": "Branco",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Branco / M"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/daca8e4c5559009e6f0b19b3bca7574b-dfbec20fb3a49feaf417773977687095-1024-1024.webp",
+        "option2": "G",
+        "id": "1900000004",
+        "option3": null,
+        "sku": "1100303G",
+        "option1": "Branco",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Branco / G"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/d42375f121929df2ef081404293f6943-577128b5c80648544717773969612461-1024-1024.webp",
+        "option2": "PP",
+        "id": "1900000005",
+        "option3": null,
+        "sku": "1100304PP",
+        "option1": "Azul Marinho",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Azul Marinho / PP"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/d42375f121929df2ef081404293f6943-577128b5c80648544717773969612461-1024-1024.webp",
+        "option2": "P",
+        "id": "1900000006",
+        "option3": null,
+        "sku": "1100304P",
+        "option1": "Azul Marinho",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Azul Marinho / P"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/d42375f121929df2ef081404293f6943-577128b5c80648544717773969612461-1024-1024.webp",
+        "option2": "M",
+        "id": "1900000007",
+        "option3": null,
+        "sku": "1100304M",
+        "option1": "Azul Marinho",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Azul Marinho / M"
+      },
+      {
+        "image": "https://acdn-us.mitiendanube.com/stores/007/592/235/products/d42375f121929df2ef081404293f6943-577128b5c80648544717773969612461-1024-1024.webp",
+        "option2": "G",
+        "id": "1900000008",
+        "option3": null,
+        "sku": "1100304G",
+        "option1": "Azul Marinho",
+        "price": 122.46,
+        "compareAtPrice": 174.95,
+        "inventoryQuantity": 10,
+        "inventoryPolicy": "deny",
+        "title": "Azul Marinho / G"
       }
     ],
     "options": [
+      {
+        "name": "Cor",
+        "values": [
+          "Nude",
+          "Branco",
+          "Azul Marinho"
+        ]
+      },
       {
         "name": "Tamanho",
         "values": [
