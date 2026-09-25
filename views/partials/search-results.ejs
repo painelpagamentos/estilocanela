@@ -25,7 +25,12 @@
                     <a href="/produtos/<%= p.handle %>/" title="<%= p.title %>" aria-label="<%= p.title %>" class="item-link">
                         <div class="js-item-name item-name mb-2"><%= p.title %></div>
                         <div class="js-item-price-container item-price-container mb-2">
-                            <span class="js-price-display item-price"><%= money(p.price) %></span>
+                            <% var searchPriceDisplay = (p.ec && p.ec.priceDisplay) ? p.ec.priceDisplay : Number(p.price).toFixed(2).replace('.', ','); %>
+                            <% var searchCompareDisplay = (p.ec && p.ec.comparePriceDisplay) ? p.ec.comparePriceDisplay : (p.compareAtPrice ? Number(p.compareAtPrice).toFixed(2).replace('.', ',') : ''); %>
+                            <% if (searchCompareDisplay) { %>
+                            <span class="price-compare">R$<%= searchCompareDisplay %></span>
+                            <% } %>
+                            <span class="js-price-display item-price">R$<%= searchPriceDisplay %></span>
                         </div>
                     </a>
                 </div>
