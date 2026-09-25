@@ -144,7 +144,7 @@
 
         </div>
 
-        <a class="ec-wa__opcao" href="#" role="button">
+        <a class="ec-wa__opcao js-ec-wa-sac" href="https://wa.me/5511934588274?text=Ol%C3%A1%2C%20preciso%20de%20atendimento%20na%20Estilo%20Canela." target="_blank" role="button">
             <svg class="ec-wa__icone-opcao" aria-hidden="true"><use xlink:href="#whatsapp"/></svg>
             <span>
                 <span class="ec-wa__nome">SAC</span>
@@ -201,14 +201,14 @@
 
         var mensagemBase = 'Olá! Vim pelo site da Estilo Canela.';
         var ehHome = window.location.pathname === '/' || window.location.pathname === '';
+        var vendedoraLinks = listaVendedoras ? listaVendedoras.querySelectorAll('.ec-wa__opcao') : [];
 
         if (!ehHome) {
             var mensagemComPagina = mensagemBase + ' Estava vendo esta página: ' + window.location.href;
-            var links = container.querySelectorAll('.ec-wa__opcao');
 
-            for (var n = 0; n < links.length; n++) {
-                var numero = links[n].getAttribute('href').split('?')[0];
-                links[n].setAttribute(
+            for (var n = 0; n < vendedoraLinks.length; n++) {
+                var numero = vendedoraLinks[n].getAttribute('href').split('?')[0];
+                vendedoraLinks[n].setAttribute(
                     'href',
                     numero + '?text=' + encodeURIComponent(mensagemComPagina)
                 );
@@ -257,12 +257,20 @@
         painel.addEventListener('click', function (evento) {
             var opcao = evento.target.closest('.ec-wa__opcao');
 
-            if (opcao) {
-                evento.preventDefault();
-                evento.stopPropagation();
-                if (typeof fecharPainel === 'function') fecharPainel();
-                abrirAviso();
+            if (!opcao) {
+                return;
             }
+
+            if (opcao.classList.contains('js-ec-wa-sac')) {
+                // SAC abre WhatsApp diretamente
+                fecharPainel();
+                return;
+            }
+
+            evento.preventDefault();
+            evento.stopPropagation();
+            if (typeof fecharPainel === 'function') fecharPainel();
+            abrirAviso();
         });
 
         // Aviso "atendentes ocupadas" em janelinha estilizada (no lugar do alert nativo)
