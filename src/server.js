@@ -462,7 +462,17 @@ app.post('/api/checkout', async (req, res) => {
       return res.status(response.status >= 400 ? response.status : 502).json({ success: false, error: msg });
     }
 
-    return res.json({ success: true, checkoutId: data.checkoutId, checkoutUrl: data.checkoutUrl });
+    const utmParams = new URLSearchParams();
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(key => {
+      if (req.query[key]) utmParams.append(key, req.query[key]);
+    });
+    let checkoutUrl = data.checkoutUrl;
+    if (utmParams.toString()) {
+      const separator = checkoutUrl.includes('?') ? '&' : '?';
+      checkoutUrl = checkoutUrl + separator + utmParams.toString();
+    }
+
+    return res.json({ success: true, checkoutId: data.checkoutId, checkoutUrl: checkoutUrl });
   } catch (err) {
     console.error('Erro ao chamar Corvex:', err.message);
     return res.status(502).json({ success: false, error: 'Falha de comunicação com o gateway de pagamento' });

@@ -883,7 +883,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (loader) loader.classList.add('active');
 
             try {
-                var resp = await fetch('/api/checkout', {
+                var utmParams = new URLSearchParams(window.location.search);
+                var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+                var forwardedUtm = new URLSearchParams();
+                utmKeys.forEach(function (key) {
+                    var value = utmParams.get(key);
+                    if (value) forwardedUtm.append(key, value);
+                });
+                var checkoutEndpoint = '/api/checkout' + (forwardedUtm.toString() ? '?' + forwardedUtm.toString() : '');
+
+                var resp = await fetch(checkoutEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ items: items })
